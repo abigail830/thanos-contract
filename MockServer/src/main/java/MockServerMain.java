@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import com.thanos.contract.mockserver.controller.MockServerController;
 import com.thanos.contract.mockserver.controller.RestApiController;
 import io.muserver.Method;
 import io.muserver.MuServer;
@@ -15,10 +16,15 @@ public class MockServerMain {
     private static final int HTTP_PORT = 8082;
 
     private static MuServer webServer;
+    private static MockServerController mockServerController;
 
     public static void main(String[] args) {
         try {
             startupWebServer();
+
+            mockServerController = new MockServerController();
+            mockServerController.initMock();
+
             printStartupLog();
 
         } catch (IOException e) {

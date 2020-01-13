@@ -1,4 +1,4 @@
-package com.thanos.contract.mockserver.domain;
+package com.thanos.contract.mockserver.domain.mapping;
 
 import java.util.HashMap;
 import java.util.Map;

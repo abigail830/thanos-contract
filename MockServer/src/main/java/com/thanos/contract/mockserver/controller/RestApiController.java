@@ -1,7 +1,7 @@
 package com.thanos.contract.mockserver.controller;
 
-import com.thanos.contract.mockserver.domain.MockMapping;
-import com.thanos.contract.mockserver.domain.MockMappingService;
+import com.thanos.contract.mockserver.domain.mapping.MockMapping;
+import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.*;
