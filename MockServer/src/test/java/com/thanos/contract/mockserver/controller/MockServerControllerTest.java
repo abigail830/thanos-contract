@@ -2,7 +2,6 @@ package com.thanos.contract.mockserver.controller;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.thanos.contract.mockserver.domain.contract.MockServerService;
-import com.thanos.contract.mockserver.domain.mapping.MockMapping;
 import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,17 +25,14 @@ public class MockServerControllerTest {
     @Mock
     MockMappingService mockMappingService;
     @Mock
-    MockServerService contractService;
+    MockServerService mockServerService;
     @Mock
     AsyncEventBus asyncEventBus;
 
-
     @Test
     public void initMock_not_create_new() {
-        when(mockMappingService.getAllMockMapping())
-                .thenReturn(Arrays.asList(new MockMapping("newIndex", 1234)));
-        when(contractService.getAllContractIndex())
-                .thenReturn(Arrays.asList("newIndex"));
+        doReturn(Arrays.asList("newIndex")).when(mockMappingService).getAllMockMappingIndexs();
+        doReturn(Arrays.asList("newIndex")).when(mockServerService).getAllContractIndex();
 
         mockServerController.initMock();
 
@@ -45,8 +41,8 @@ public class MockServerControllerTest {
 
     @Test
     public void initMock_create_new() {
-        when(mockMappingService.getAllMockMapping()).thenReturn(new ArrayList<>());
-        when(contractService.getAllContractIndex()).thenReturn(Arrays.asList("newIndex"));
+        doReturn(new ArrayList<>()).when(mockMappingService).getAllMockMappingIndexs();
+        doReturn(Arrays.asList("newIndex")).when(mockServerService).getAllContractIndex();
 
         mockServerController.initMock();
 

@@ -29,10 +29,10 @@ public class MockServerController {
     private AsyncEventBus asyncEventBus;
     private Boolean standalone;
 
-    public MockServerController(Boolean standalone) {
+    public MockServerController(Boolean standalone, MockMappingService mockMappingService, MockServerService mockServerService) {
         this.standalone = standalone;
-        mockMappingService = new MockMappingService();
-        mockServerService = new MockServerService();
+        this.mockMappingService = mockMappingService;
+        this.mockServerService = mockServerService;
 
         asyncEventBus = EventBusFactory.getInstance();
         asyncEventBus.register(this);

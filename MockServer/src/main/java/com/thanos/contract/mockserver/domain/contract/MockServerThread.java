@@ -35,10 +35,10 @@ public class MockServerThread implements Runnable {
     private List<String> schemaNeeded = new ArrayList<>();
     private AsyncEventBus asyncEventBus;
 
-    private MockServerService mockServerProcessor;
+    private MockServerService mockServerService;
 
-    public MockServerThread(String index, MockServerService mockServerProcessor) {
-        this.mockServerProcessor = mockServerProcessor;
+    public MockServerThread(String index, MockServerService mockServerService) {
+        this.mockServerService = mockServerService;
         this.index = index;
 
         asyncEventBus = EventBusFactory.getInstance();
@@ -54,7 +54,7 @@ public class MockServerThread implements Runnable {
 
     private void reloadSchemas() {
         if (!schemaNeeded.isEmpty()) {
-            final List<Schema> schemaByIndex = mockServerProcessor.getSchemaByIndex(schemaNeeded);
+            final List<Schema> schemaByIndex = mockServerService.getSchemaByIndex(schemaNeeded);
             if (!schemaByIndex.isEmpty()) {
                 schemaList = schemaByIndex;
                 log.info("Schema List reloaded with {} records now", schemaList.size());
@@ -63,7 +63,7 @@ public class MockServerThread implements Runnable {
     }
 
     private void reloadContracts(String index) {
-        final List<Contract> contractByIndex = mockServerProcessor.getContractByIndex(index);
+        final List<Contract> contractByIndex = mockServerService.getContractByIndex(index);
         if (!contractByIndex.isEmpty()) {
             contractList = contractByIndex;
             schemaNeeded = contractList.stream()

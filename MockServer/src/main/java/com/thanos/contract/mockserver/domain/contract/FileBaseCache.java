@@ -32,7 +32,7 @@ public class FileBaseCache {
 //
 //    static {
 //        final List<String> schemaPaths = getAllSchemaPaths();
-//        final SchemaParser schemaParser = new SchemaParser();
+//        final SchemaFileParser schemaParser = new SchemaFileParser();
 //        schemas = schemaPaths.stream()
 //                .map(schemaParser::parse)
 //                .flatMap(Collection::stream).collect(Collectors.toList());

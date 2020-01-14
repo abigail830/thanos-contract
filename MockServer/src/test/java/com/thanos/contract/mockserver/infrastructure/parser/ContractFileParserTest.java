@@ -8,13 +8,13 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class ContractParserTest {
+public class ContractFileParserTest {
 
     @Test
     public void parse() {
 
-        final URL resource = ContractParserTest.class.getClassLoader().getResource("contracts/provider/consumer1/");
-        final ContractParser contractParser = new ContractParser();
+        final URL resource = ContractFileParserTest.class.getClassLoader().getResource("contracts/provider/consumer1/");
+        final ContractFileParser contractParser = new ContractFileParser();
         final List<Contract> result =
                 contractParser.parse(resource.getPath(), "contract1.yml");
 
@@ -28,10 +28,10 @@ public class ContractParserTest {
 
     @Test
     public void parse_with_full_path() {
-        final URL resource = ContractParserTest.class.getClassLoader()
+        final URL resource = ContractFileParserTest.class.getClassLoader()
                 .getResource("contracts/provider/consumer2/contract2.yml");
 
-        final ContractParser contractParser = new ContractParser();
+        final ContractFileParser contractParser = new ContractFileParser();
 
         final List<Contract> result =
                 contractParser.parse(resource.getPath());

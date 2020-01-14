@@ -1,6 +1,8 @@
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.thanos.contract.mockserver.controller.MockServerController;
 import com.thanos.contract.mockserver.controller.RestApiController;
+import com.thanos.contract.mockserver.domain.contract.MockServerService;
+import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
 import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import io.muserver.Method;
 import io.muserver.MuServer;
@@ -30,10 +32,12 @@ public class MockServerMain {
             propertiesParser.init();
 
             //startup web server
-            startupWebServer();
+            final MockMappingService mockMappingService = new MockMappingService();
+            startupWebServer(mockMappingService);
 
             //startup mockController
-            mockServerController = new MockServerController(PropertiesParser.getStandaloneFlag());
+            mockServerController = new MockServerController(PropertiesParser.getStandaloneFlag(),
+                    mockMappingService, new MockServerService());
             mockServerController.initMock();
 
             printStartupLog();
@@ -63,13 +67,13 @@ public class MockServerMain {
         }));
     }
 
-    private static void startupWebServer() throws IOException {
+    private static void startupWebServer(MockMappingService mockMappingService) throws IOException {
         PropertiesParser.getPropValues("port")
                 .ifPresent(s -> httpPort = Integer.valueOf(s));
 
         webServer = httpServer()
                 .withHttpPort(httpPort)
-                .addHandler(RestHandlerBuilder.restHandler(new RestApiController())
+                .addHandler(RestHandlerBuilder.restHandler(new RestApiController(mockMappingService))
                         .addCustomWriter(new JacksonJaxbJsonProvider())
                         .addCustomReader(new JacksonJaxbJsonProvider())
                         .withOpenApiJsonUrl("/openapi.json")

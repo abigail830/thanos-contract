@@ -8,14 +8,14 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class SchemaParserTest {
+public class SchemaFileParserTest {
 
     @Test
     public void parse() {
-        final URL resource = SchemaParserTest.class.getClassLoader().getResource("schemas/");
-        SchemaParser schemaParser = new SchemaParser();
+        final URL resource = SchemaFileParserTest.class.getClassLoader().getResource("schemas/");
+        SchemaFileParser schemaFileParser = new SchemaFileParser();
 
-        final List<Schema> result = schemaParser.parse(resource.getPath(), "provider_schema1_v1.yml");
+        final List<Schema> result = schemaFileParser.parse(resource.getPath(), "provider_schema1_v1.yml");
 
         System.out.println(result);
         assertEquals(1, result.size());

@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Slf4j
-public class SchemaParser {
+public class SchemaFileParser {
 
     Yaml yaml = new Yaml(new Constructor(SchemaDTO.class));
 
