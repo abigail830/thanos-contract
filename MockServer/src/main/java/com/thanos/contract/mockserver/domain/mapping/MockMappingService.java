@@ -11,7 +11,7 @@ public class MockMappingService {
 
     private static MockMappingService mockMappingService = null;
 
-    private MockMappingService() {
+    protected MockMappingService() {
     }
 
     public static MockMappingService getInstance() {
@@ -31,4 +31,5 @@ public class MockMappingService {
     public void addNewMockMapping(MockMapping mockMapping) throws BizException {
         MockMappingCache.addNewMockMapping(mockMapping);
     }
+
 }

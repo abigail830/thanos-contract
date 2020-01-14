@@ -1,11 +1,11 @@
-@startuml C4_Elements
-!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+'@startuml C4_Elements
+'!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
 
-'@startuml container-diagram
+@startuml container-diagram
 '!includeurl https://raw.githubusercontent.com/xuanye/plantuml-style-c4/master/c4_container.puml
-'!include C4_Container.puml
+!include C4_Container.puml
 
-'LAYOUT_AS_SKETCH
+LAYOUT_AS_SKETCH
 'LAYOUT_LEFT_RIGHT
 
 Person(consumer1, "User", "Dev/Tester")
@@ -22,15 +22,15 @@ System_Boundary(c1, "MockService") {
 
 System_Ext(contractService, "Contract Service")
 
-Rel_Neighbor(consumer1, web_server, "HTTP", "Get MockServer Port")
+Rel(consumer1, web_server, "HTTP", "Get MockServer Port")
 Rel(consumer2, mockServerThread, "TCP", "Request Msg")
 
 Rel(mockServerController, contractService,"HTTP GET","GetAllContractIndex")
 Rel(mockServerController, mockServerThread,"Java","Create new thread")
 Rel(mockServerController, mockServerThread,"EventBus","ShutDownMockEvent")
 Rel(mockServerThread, mockServerController,"EventBus","NewMockMappingEvent")
-Rel(mockServerThread, contractService,"HTTP GET","GetContractsByIndex")
-Rel(mockServerThread, contractService,"HTTP GET","getSchemasByIndex")
+Rel_Neighbor(mockServerThread, contractService,"HTTP GET","GetContractsByIndex/getSchemasByIndex")
+'Rel(mockServerThread, contractService,"HTTP GET","getSchemasByIndex")
 
 Rel(mockServerController, cacheService, "Java","Add New Mapping")
 Rel(cacheService, mockCache, "Static","Add New Mapping")

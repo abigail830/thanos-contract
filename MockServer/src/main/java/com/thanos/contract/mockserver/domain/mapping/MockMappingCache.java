@@ -20,4 +20,5 @@ public class MockMappingCache {
     static Map<String, Integer> getAllMockMapping() {
         return mockMappings;
     }
+
 }

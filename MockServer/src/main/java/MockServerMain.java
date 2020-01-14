@@ -19,6 +19,10 @@ public class MockServerMain {
     private static MockServerController mockServerController;
 
     public static void main(String[] args) {
+        start();
+    }
+
+    public static void start() {
         try {
             startupWebServer();
 
