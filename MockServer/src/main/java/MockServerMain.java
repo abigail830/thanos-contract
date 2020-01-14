@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.thanos.contract.mockserver.controller.MockServerController;
 import com.thanos.contract.mockserver.controller.RestApiController;
+import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import io.muserver.Method;
 import io.muserver.MuServer;
 import io.muserver.rest.RestHandlerBuilder;
@@ -13,7 +14,8 @@ import static io.muserver.MuServerBuilder.httpServer;
 @Slf4j
 public class MockServerMain {
 
-    private static final int HTTP_PORT = 8082;
+    private static int httpPort = 8082;
+    private static String mode = "STANDALONE";
 
     private static MuServer webServer;
     private static MockServerController mockServerController;
@@ -24,7 +26,17 @@ public class MockServerMain {
 
     public static void start() {
         try {
+            //read properties
+            PropertiesParser propertiesParser = new PropertiesParser();
+            propertiesParser.init();
+
+            //startup web server
+            PropertiesParser.getPropValues("port")
+                    .ifPresent(s -> httpPort = Integer.valueOf(s));
             startupWebServer();
+
+            PropertiesParser.getPropValues("mode")
+                    .ifPresent(m -> mode = m);
 
             mockServerController = new MockServerController();
             mockServerController.initMock();
@@ -32,7 +44,8 @@ public class MockServerMain {
             printStartupLog();
 
         } catch (IOException e) {
-            log.error("IO Exception during startup, going to exist...");
+            log.error("{}", e);
+            log.error("Exception during startup, going to exit...");
             System.exit(9);
         }
         addShutdownHook();
@@ -56,7 +69,7 @@ public class MockServerMain {
 
     private static void startupWebServer() throws IOException {
         webServer = httpServer()
-                .withHttpPort(HTTP_PORT)
+                .withHttpPort(httpPort)
                 .addHandler(RestHandlerBuilder.restHandler(new RestApiController())
                         .addCustomWriter(new JacksonJaxbJsonProvider())
                         .addCustomReader(new JacksonJaxbJsonProvider())

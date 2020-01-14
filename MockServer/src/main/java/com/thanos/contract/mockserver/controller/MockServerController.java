@@ -30,7 +30,7 @@ public class MockServerController {
     private AsyncEventBus asyncEventBus;
 
     public MockServerController() {
-        mockMappingService = MockMappingService.getInstance();
+        mockMappingService = new MockMappingService();
         mockServerProcessor = new MockServerProcessor();
 
         asyncEventBus = EventBusFactory.getInstance();

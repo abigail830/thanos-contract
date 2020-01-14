@@ -2,8 +2,8 @@
 '!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
 
 @startuml container-diagram
-'!includeurl https://raw.githubusercontent.com/xuanye/plantuml-style-c4/master/c4_container.puml
 !include C4_Container.puml
+'!includeurl https://raw.githubusercontent.com/xuanye/plantuml-style-c4/master/c4_container.puml
 
 LAYOUT_AS_SKETCH
 'LAYOUT_LEFT_RIGHT

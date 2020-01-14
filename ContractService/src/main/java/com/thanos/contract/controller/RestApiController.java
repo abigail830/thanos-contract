@@ -1,6 +1,9 @@
 package com.thanos.contract.controller;
 
-import com.thanos.contract.domain.*;
+import com.thanos.contract.domain.Contract;
+import com.thanos.contract.domain.ContractField;
+import com.thanos.contract.domain.Schema;
+import com.thanos.contract.domain.SchemaField;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,12 +17,6 @@ import java.util.List;
 
 @Path("/apis")
 public class RestApiController {
-
-    private ContractService contractService;
-
-    public RestApiController() {
-        contractService = ContractService.getInstance();
-    }
 
     @GET
     @Path("/contracts/indexs")

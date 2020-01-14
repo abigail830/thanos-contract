@@ -15,7 +15,7 @@ public class RestApiController {
     private MockMappingService mockMappingService;
 
     public RestApiController() {
-        mockMappingService = MockMappingService.getInstance();
+        mockMappingService = new MockMappingService();
     }
 
     @GET

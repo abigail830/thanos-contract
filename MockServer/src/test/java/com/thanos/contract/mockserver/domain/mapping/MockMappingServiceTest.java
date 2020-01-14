@@ -8,7 +8,7 @@ public class MockMappingServiceTest {
 
     @Test
     public void getAllMockMapping() {
-        final MockMappingService service = MockMappingService.getInstance();
+        final MockMappingService service = new MockMappingService();
         service.addNewMockMapping(new MockMapping("index", 1234));
 
         assertEquals(service.getAllMockMapping().size(), 1);
