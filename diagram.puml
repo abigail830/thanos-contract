@@ -1,0 +1,26 @@
+@startuml C4_Elements
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+Person_Ext(user, "User", "Consumers & Providers")
+
+System_Ext(thanosUI, "ThanosUI", "Maybe ApiGateway as well")
+
+System_Boundary(c1, "ThanosContact Core") {
+    Container(mockServer, "MockServer", "Java", "Maint mockServer according to contract")
+    Container(contractService, "ContractService", "Java", "Maint contracts & schemas")
+    Container(codeGenerator, "CodeGenerator", "Java", "Generate Junit Sample according to contract")
+
+}
+
+Rel(user, thanosUI, "HTTP", "via JSON")
+
+
+Rel(user, mockServer, "TCP", "via JSON")
+Rel(thanosUI, contractService, "HTTP", "via JSON")
+Rel(thanosUI, codeGenerator, "HTTP", "via JSON")
+Rel(thanosUI, mockServer, "HTTP", "via JSON")
+
+Rel(mockServer, contractService, "HTTP", "via JSON")
+Rel(codeGenerator, contractService, "HTTP", "via JSON")
+
+@enduml
