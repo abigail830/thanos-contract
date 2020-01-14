@@ -37,7 +37,7 @@ public class ValidatorFactory {
             })
             .build();
 
-    public static Validator getValidator(String value) {
+    public Validator getValidator(String value) {
         if (value.matches(PATTERN_IN_STRING)) {
             Matcher matcher = FUNCTION_PATTERN.matcher(value);
             if (matcher.find()) {

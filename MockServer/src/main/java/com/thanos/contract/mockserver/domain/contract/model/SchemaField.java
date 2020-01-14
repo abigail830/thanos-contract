@@ -19,7 +19,7 @@ public class SchemaField {
         this.type = type;
         this.length = length;
         this.content = content;
-        this.validator = ValidatorFactory.getValidator(content);
+        this.validator = new ValidatorFactory().getValidator(content);
     }
 
     public boolean match(String extractedContent) {

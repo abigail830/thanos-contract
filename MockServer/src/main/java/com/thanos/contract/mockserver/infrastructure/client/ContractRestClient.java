@@ -2,8 +2,8 @@ package com.thanos.contract.mockserver.infrastructure.client;
 
 import com.google.gson.reflect.TypeToken;
 import com.thanos.contract.mockserver.exception.InfraException;
-import com.thanos.contract.mockserver.infrastructure.client.dto.ContractDTO;
-import com.thanos.contract.mockserver.infrastructure.client.dto.SchemaDTO;
+import com.thanos.contract.mockserver.infrastructure.dto.ContractDTO;
+import com.thanos.contract.mockserver.infrastructure.dto.SchemaDTO;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;

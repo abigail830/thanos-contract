@@ -1,16 +1,16 @@
-package com.thanos.contract.mockserver.infrastructure.client.dto;
+package com.thanos.contract.mockserver.infrastructure.dto;
 
 import com.thanos.contract.mockserver.domain.contract.model.Contract;
 import com.thanos.contract.mockserver.domain.contract.model.ContractField;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,6 +36,16 @@ public class ContractDTO {
                 .map(ContractFieldDTO::toContractField).collect(Collectors.toCollection(LinkedList::new));
 
         return new Contract(name, version, schemaIndex, consumer, provider, request, response);
+    }
+
+    public static List<Contract> buildFrom(Iterable<Object> ymlResult) {
+        final List<Contract> result = new ArrayList<>();
+        for (Object record : ymlResult) {
+            if (record instanceof ContractDTO) {
+                result.add(((ContractDTO) record).toContract());
+            }
+        }
+        return result;
     }
 
 }

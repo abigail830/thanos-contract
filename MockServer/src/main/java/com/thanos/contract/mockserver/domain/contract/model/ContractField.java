@@ -18,7 +18,7 @@ public class ContractField {
     public ContractField(String name, String content) {
         this.name = name;
         this.content = content;
-        validator = ValidatorFactory.getValidator(content);
+        validator = new ValidatorFactory().getValidator(content);
     }
 
     public boolean match(String actualContent) {

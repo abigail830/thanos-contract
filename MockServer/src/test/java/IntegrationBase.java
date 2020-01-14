@@ -1,8 +1,8 @@
 import com.thanos.contract.mockserver.infrastructure.client.ContractRestClient;
-import com.thanos.contract.mockserver.infrastructure.client.dto.ContractDTO;
-import com.thanos.contract.mockserver.infrastructure.client.dto.ContractFieldDTO;
-import com.thanos.contract.mockserver.infrastructure.client.dto.SchemaDTO;
-import com.thanos.contract.mockserver.infrastructure.client.dto.SchemaFieldDTO;
+import com.thanos.contract.mockserver.infrastructure.dto.ContractDTO;
+import com.thanos.contract.mockserver.infrastructure.dto.ContractFieldDTO;
+import com.thanos.contract.mockserver.infrastructure.dto.SchemaDTO;
+import com.thanos.contract.mockserver.infrastructure.dto.SchemaFieldDTO;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -1,16 +1,15 @@
-package com.thanos.contract.mockserver.infrastructure.client.dto;
+package com.thanos.contract.mockserver.infrastructure.dto;
 
 import com.thanos.contract.mockserver.domain.contract.model.Schema;
 import com.thanos.contract.mockserver.domain.contract.model.SchemaField;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,5 +31,15 @@ public class SchemaDTO {
         final LinkedList<SchemaField> res = response.stream()
                 .map(SchemaFieldDTO::toSchemaField).collect(Collectors.toCollection(LinkedList::new));
         return new Schema(provider, version, name, req, res);
+    }
+
+    public static List<Schema> buildFrom(Iterable<Object> ymlResult) {
+        final List<Schema> result = new LinkedList<>();
+        for (Object record : ymlResult) {
+            if (record instanceof SchemaDTO) {
+                result.add(((SchemaDTO) record).toSchema());
+            }
+        }
+        return result;
     }
 }
