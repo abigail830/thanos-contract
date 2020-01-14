@@ -1,8 +1,8 @@
 package com.thanos.contract.mockserver.controller;
 
 import com.google.common.eventbus.AsyncEventBus;
-import com.thanos.contract.mockserver.domain.contract.MockServerService;
 import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
+import com.thanos.contract.mockserver.domain.mockserver.MockServerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

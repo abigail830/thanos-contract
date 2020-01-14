@@ -1,6 +1,6 @@
 package com.thanos.contract.mockserver.infrastructure.parser;
 
-import com.thanos.contract.mockserver.domain.contract.model.Schema;
+import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.exception.InfraException;
 import com.thanos.contract.mockserver.infrastructure.dto.SchemaDTO;
 import lombok.extern.slf4j.Slf4j;

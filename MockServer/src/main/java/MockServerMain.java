@@ -1,8 +1,8 @@
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.thanos.contract.mockserver.controller.MockServerController;
 import com.thanos.contract.mockserver.controller.RestApiController;
-import com.thanos.contract.mockserver.domain.contract.MockServerService;
 import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
+import com.thanos.contract.mockserver.domain.mockserver.MockServerService;
 import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import io.muserver.Method;
 import io.muserver.MuServer;

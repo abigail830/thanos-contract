@@ -1,7 +1,7 @@
-package com.thanos.contract.mockserver.domain.contract;
+package com.thanos.contract.mockserver.domain.mockserver;
 
-import com.thanos.contract.mockserver.domain.contract.model.Contract;
-import com.thanos.contract.mockserver.domain.contract.model.Schema;
+import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
+import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.exception.BizException;
 
 import java.util.List;

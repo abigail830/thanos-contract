@@ -1,6 +1,6 @@
 package com.thanos.contract.mockserver.infrastructure.parser;
 
-import com.thanos.contract.mockserver.domain.contract.model.Schema;
+import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import org.junit.Test;
 
 import java.net.URL;

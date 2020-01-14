@@ -1,6 +1,6 @@
 package com.thanos.contract.mockserver.infrastructure.dto;
 
-import com.thanos.contract.mockserver.domain.contract.model.SchemaField;
+import com.thanos.contract.mockserver.domain.mockserver.model.SchemaField;
 import lombok.*;
 
 @Setter

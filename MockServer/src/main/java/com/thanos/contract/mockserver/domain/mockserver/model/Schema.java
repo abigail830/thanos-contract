@@ -1,4 +1,4 @@
-package com.thanos.contract.mockserver.domain.contract.model;
+package com.thanos.contract.mockserver.domain.mockserver.model;
 
 import com.google.common.collect.Maps;
 import com.thanos.contract.mockserver.exception.BizException;

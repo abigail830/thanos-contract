@@ -1,7 +1,7 @@
 package com.thanos.contract.mockserver.infrastructure.dto;
 
-import com.thanos.contract.mockserver.domain.contract.model.Contract;
-import com.thanos.contract.mockserver.domain.contract.model.ContractField;
+import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
+import com.thanos.contract.mockserver.domain.mockserver.model.ContractField;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

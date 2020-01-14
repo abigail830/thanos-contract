@@ -1,4 +1,4 @@
-package com.thanos.contract.mockserver.domain.contract.validate;
+package com.thanos.contract.mockserver.domain.mockserver.validate;
 
 import com.mifmif.common.regex.Generex;
 

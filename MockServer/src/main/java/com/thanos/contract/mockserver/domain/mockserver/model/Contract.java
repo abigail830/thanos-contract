@@ -1,4 +1,4 @@
-package com.thanos.contract.mockserver.domain.contract.model;
+package com.thanos.contract.mockserver.domain.mockserver.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

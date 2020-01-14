@@ -1,7 +1,7 @@
-package com.thanos.contract.mockserver.domain.contract.model;
+package com.thanos.contract.mockserver.domain.mockserver.model;
 
-import com.thanos.contract.mockserver.domain.contract.validate.Validator;
-import com.thanos.contract.mockserver.domain.contract.validate.ValidatorFactory;
+import com.thanos.contract.mockserver.domain.mockserver.validate.Validator;
+import com.thanos.contract.mockserver.domain.mockserver.validate.ValidatorFactory;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

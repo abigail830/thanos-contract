@@ -1,11 +1,11 @@
-package com.thanos.contract.mockserver.domain.contract;
+package com.thanos.contract.mockserver.domain.mockserver;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.Subscribe;
 import com.google.common.io.CharStreams;
-import com.thanos.contract.mockserver.domain.contract.model.Contract;
-import com.thanos.contract.mockserver.domain.contract.model.MessageService;
-import com.thanos.contract.mockserver.domain.contract.model.Schema;
+import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
+import com.thanos.contract.mockserver.domain.mockserver.model.MessageService;
+import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.infrastructure.eventbus.EventBusFactory;
 import com.thanos.contract.mockserver.infrastructure.eventbus.NewMockMappingEvent;
 import com.thanos.contract.mockserver.infrastructure.eventbus.ShutdownMockEvent;
