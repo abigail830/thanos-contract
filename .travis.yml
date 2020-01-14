@@ -4,12 +4,12 @@ matrix:
   -
     before_script:
     - "cd MockServer"
-    jdk: oraclejdk8
+    jdk: openjdk8
     language: java
     script: "mvn clean package"
   -
     before_script:
     - "cd ContractService"
-    jdk: oraclejdk8
+    jdk: openjdk8
     language: java
     script: "mvn clean package"
