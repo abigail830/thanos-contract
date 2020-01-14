@@ -14,8 +14,7 @@ import static io.muserver.MuServerBuilder.httpServer;
 @Slf4j
 public class MockServerMain {
 
-    private static int httpPort = 8082;
-    private static String mode = "STANDALONE";
+    private static int httpPort = 8080;
 
     private static MuServer webServer;
     private static MockServerController mockServerController;
@@ -31,14 +30,10 @@ public class MockServerMain {
             propertiesParser.init();
 
             //startup web server
-            PropertiesParser.getPropValues("port")
-                    .ifPresent(s -> httpPort = Integer.valueOf(s));
             startupWebServer();
 
-            PropertiesParser.getPropValues("mode")
-                    .ifPresent(m -> mode = m);
-
-            mockServerController = new MockServerController();
+            //startup mockController
+            mockServerController = new MockServerController(PropertiesParser.getStandaloneFlag());
             mockServerController.initMock();
 
             printStartupLog();
@@ -52,6 +47,7 @@ public class MockServerMain {
     }
 
     synchronized static void printStartupLog() {
+        log.info("Startup as standalone mode: {}", PropertiesParser.getStandaloneFlag());
         log.info("###########################################");
         log.info("            Service is up!                 ");
         log.info("###########################################");
@@ -68,6 +64,9 @@ public class MockServerMain {
     }
 
     private static void startupWebServer() throws IOException {
+        PropertiesParser.getPropValues("port")
+                .ifPresent(s -> httpPort = Integer.valueOf(s));
+
         webServer = httpServer()
                 .withHttpPort(httpPort)
                 .addHandler(RestHandlerBuilder.restHandler(new RestApiController())

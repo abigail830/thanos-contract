@@ -11,7 +11,7 @@ import java.util.Properties;
 @Slf4j
 public class PropertiesParser {
 
-    private static String PROP_FILE_NAME = "application.properties";
+    private static final String PROP_FILE_NAME = "application.properties";
     private static Properties prop;
     private InputStream inputStream;
 
@@ -27,5 +27,9 @@ public class PropertiesParser {
         } else {
             throw new FileNotFoundException("property file '" + PROP_FILE_NAME + "' not found in the classpath");
         }
+    }
+
+    public static Boolean getStandaloneFlag() {
+        return new Boolean(prop.getProperty("standalone"));
     }
 }

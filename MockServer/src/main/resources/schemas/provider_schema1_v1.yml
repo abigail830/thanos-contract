@@ -1,0 +1,40 @@
+name: 'schema1'
+version: 'v1'
+provider: 'provider'
+request:
+- fields:
+  - name: MSG_TYPE
+    type: CHAR
+    length: 1
+    validation: 'regex(0|1)'
+  - name: TRAN_ASYNC
+    type: CHAR
+    length: 1
+    validation: 'regex(0|1)'
+  - name: MESSAGE_TYPE
+    type: NUM
+    length: 5
+    validation: '10400'
+  - name: TCODE
+    type: NUM
+    length: 6
+    validation: 'regex(\d{6})'
+  - name: ACCT_NO
+    type: NUM
+    length: 17
+    validation: 'regex(\d{17})'
+  - name: CHOICE
+    type: CHAR
+    length: 1
+    validation: 'regex(1|3|4)'
+response:
+- fields:
+  - name: SUPPLEMENT
+    type: CHAR
+    length: 10
+    validation: 'regex([a-zA-Z0-9]{10})'
+  - name: MEMO
+    type: CHAR
+    length: 40
+    validation: 'regex([a-zA-Z0-9]{40})'
+

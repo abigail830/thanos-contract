@@ -1,7 +1,7 @@
 package com.thanos.contract.mockserver.controller;
 
 import com.google.common.eventbus.AsyncEventBus;
-import com.thanos.contract.mockserver.domain.contract.MockServerProcessor;
+import com.thanos.contract.mockserver.domain.contract.MockServerService;
 import com.thanos.contract.mockserver.domain.mapping.MockMapping;
 import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class MockServerControllerTest {
     @Mock
     MockMappingService mockMappingService;
     @Mock
-    MockServerProcessor contractService;
+    MockServerService contractService;
     @Mock
     AsyncEventBus asyncEventBus;
 

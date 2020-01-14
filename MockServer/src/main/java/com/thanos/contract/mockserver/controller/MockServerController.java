@@ -2,7 +2,7 @@ package com.thanos.contract.mockserver.controller;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.Subscribe;
-import com.thanos.contract.mockserver.domain.contract.MockServerProcessor;
+import com.thanos.contract.mockserver.domain.contract.MockServerService;
 import com.thanos.contract.mockserver.domain.contract.MockServerThread;
 import com.thanos.contract.mockserver.domain.mapping.MockMapping;
 import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class MockServerController {
@@ -26,12 +25,14 @@ public class MockServerController {
     private List<String> startedIndexs = new ArrayList<>();
 
     private MockMappingService mockMappingService;
-    private MockServerProcessor mockServerProcessor;
+    private MockServerService mockServerService;
     private AsyncEventBus asyncEventBus;
+    private Boolean standalone;
 
-    public MockServerController() {
+    public MockServerController(Boolean standalone) {
+        this.standalone = standalone;
         mockMappingService = new MockMappingService();
-        mockServerProcessor = new MockServerProcessor();
+        mockServerService = new MockServerService();
 
         asyncEventBus = EventBusFactory.getInstance();
         asyncEventBus.register(this);
@@ -41,10 +42,9 @@ public class MockServerController {
      * Group mock server by provider-consumer
      */
     public synchronized void initMock() {
-        startedIndexs = mockMappingService.getAllMockMapping().stream()
-                .map(MockMapping::getIndex).collect(Collectors.toList());
+        startedIndexs = mockMappingService.getAllMockMappingIndexs();
 
-        final List<String> allContractIndex = mockServerProcessor.getAllContractIndex();
+        final List<String> allContractIndex = mockServerService.getAllContractIndex();
 
         allContractIndex.stream().filter(index -> !startedIndexs.contains(index))
                 .forEach(this::createNewMockForIndex);
@@ -52,7 +52,7 @@ public class MockServerController {
 
     void createNewMockForIndex(String index) {
         log.info("Creating new mock server: {}", index);
-        executor.execute(new MockServerThread(index, mockServerProcessor));
+        executor.execute(new MockServerThread(index, mockServerService));
     }
 
     @Subscribe

@@ -35,9 +35,9 @@ public class MockServerThread implements Runnable {
     private List<String> schemaNeeded = new ArrayList<>();
     private AsyncEventBus asyncEventBus;
 
-    private MockServerProcessor mockServerProcessor;
+    private MockServerService mockServerProcessor;
 
-    public MockServerThread(String index, MockServerProcessor mockServerProcessor) {
+    public MockServerThread(String index, MockServerService mockServerProcessor) {
         this.mockServerProcessor = mockServerProcessor;
         this.index = index;
 

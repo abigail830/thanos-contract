@@ -2,6 +2,7 @@ package com.thanos.contract.mockserver.domain.mapping;
 
 import com.thanos.contract.mockserver.exception.BizException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,6 +19,11 @@ public class MockMappingService {
 
     public void addNewMockMapping(MockMapping mockMapping) throws BizException {
         MockMappingCache.addNewMockMapping(mockMapping);
+    }
+
+    public List<String> getAllMockMappingIndexs() throws BizException {
+        final Map<String, Integer> allMockMapping = MockMappingCache.getAllMockMapping();
+        return new ArrayList<>(allMockMapping.keySet());
     }
 
 }

@@ -6,11 +6,14 @@ import com.thanos.contract.mockserver.domain.contract.model.Schema;
 import com.thanos.contract.mockserver.exception.BizException;
 import com.thanos.contract.mockserver.infrastructure.client.dto.ContractDTO;
 import com.thanos.contract.mockserver.infrastructure.client.dto.SchemaDTO;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class MockServerRepositoryImpl implements MockServerRepository {
 
     private ContractRestClient restClient = new ContractRestClient();
@@ -20,7 +23,8 @@ public class MockServerRepositoryImpl implements MockServerRepository {
         try {
             return restClient.getAllContractIndex();
         } catch (Exception e) {
-            throw new BizException(e.getMessage(), e);
+            log.error("Fail to HTTP GET getAllContractIndex", e);
+            return new ArrayList<>();
         }
     }
 
@@ -30,7 +34,8 @@ public class MockServerRepositoryImpl implements MockServerRepository {
             return restClient.getContractByIndex(index).stream()
                     .map(ContractDTO::toContract).collect(Collectors.toList());
         } catch (Exception e) {
-            throw new BizException(e.getMessage(), e);
+            log.error("Fail to HTTP GET getContractByIndex", e);
+            return new ArrayList<>();
         }
     }
 
@@ -40,7 +45,8 @@ public class MockServerRepositoryImpl implements MockServerRepository {
             return restClient.getSchemaByIndex(schemaNeeded).stream()
                     .map(SchemaDTO::toSchema).collect(Collectors.toList());
         } catch (IOException e) {
-            throw new BizException(e.getMessage(), e);
+            log.error("Fail to HTTP GET getSchemaByIndex", e);
+            return new ArrayList<>();
         }
     }
 }
