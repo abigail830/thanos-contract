@@ -1,0 +1,15 @@
+---
+matrix:
+  include:
+  -
+    before_script:
+    - "cd MockServer"
+    jdk: oraclejdk8
+    language: java
+    script: "mvn clean package"
+  -
+    before_script:
+    - "cd ContractService"
+    jdk: oraclejdk8
+    language: java
+    script: "mvn clean package"
