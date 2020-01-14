@@ -27,10 +27,8 @@ public class MockServerController {
     private MockMappingService mockMappingService;
     private MockServerService mockServerService;
     private AsyncEventBus asyncEventBus;
-    private Boolean standalone;
 
-    public MockServerController(Boolean standalone, MockMappingService mockMappingService, MockServerService mockServerService) {
-        this.standalone = standalone;
+    public MockServerController(MockMappingService mockMappingService, MockServerService mockServerService) {
         this.mockMappingService = mockMappingService;
         this.mockServerService = mockServerService;
 

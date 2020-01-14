@@ -14,9 +14,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class MockServerRepositoryImpl implements MockServerRepository {
+public class ContractRestClientRepoImpl implements MockServerRepository {
 
-    private ContractRestClient restClient = new ContractRestClient();
+    private ContractRestClient restClient;
+
+    public ContractRestClientRepoImpl() {
+        this.restClient = new ContractRestClient();
+    }
 
     @Override
     public List<String> getAllContractIndex() throws BizException {

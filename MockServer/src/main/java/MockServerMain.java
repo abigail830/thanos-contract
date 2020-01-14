@@ -36,14 +36,17 @@ public class MockServerMain {
             startupWebServer(mockMappingService);
 
             //startup mockController
-            mockServerController = new MockServerController(PropertiesParser.getStandaloneFlag(),
-                    mockMappingService, new MockServerService());
+            mockServerController = new MockServerController(mockMappingService, new MockServerService());
             mockServerController.initMock();
 
             printStartupLog();
 
         } catch (IOException e) {
             log.error("{}", e);
+            log.error("IOException during startup, going to exit...");
+            System.exit(5);
+        } catch (Exception ex) {
+            log.error("{}", ex);
             log.error("Exception during startup, going to exit...");
             System.exit(9);
         }
