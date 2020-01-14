@@ -1,9 +1,5 @@
-package com.thanos.contract.mockserver.domain.contract.mock;
+package com.thanos.contract.mockserver.domain.contract.model;
 
-import com.thanos.contract.mockserver.domain.contract.Contract;
-import com.thanos.contract.mockserver.domain.contract.ContractField;
-import com.thanos.contract.mockserver.domain.contract.Schema;
-import com.thanos.contract.mockserver.domain.contract.SchemaField;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

@@ -1,5 +1,7 @@
 package com.thanos.contract.mockserver.domain.contract;
 
+import com.thanos.contract.mockserver.domain.contract.model.Contract;
+import com.thanos.contract.mockserver.domain.contract.model.ContractField;
 import org.junit.Before;
 import org.junit.Test;
 

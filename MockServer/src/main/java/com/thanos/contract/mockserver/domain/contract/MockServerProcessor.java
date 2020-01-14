@@ -1,25 +1,26 @@
 package com.thanos.contract.mockserver.domain.contract;
 
-import com.thanos.contract.mockserver.infrastructure.client.ContractRestClient;
+import com.thanos.contract.mockserver.domain.contract.model.Contract;
+import com.thanos.contract.mockserver.domain.contract.model.Schema;
+import com.thanos.contract.mockserver.infrastructure.client.MockServerRepositoryImpl;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
-public class ContractService {
+public class MockServerProcessor {
 
-    ContractRepository contractRepository;
+    private MockServerRepository mockServerRepository;
 
-    public ContractService() {
-        this.contractRepository = new ContractRestClient();
+    public MockServerProcessor() {
+        this.mockServerRepository = new MockServerRepositoryImpl();
     }
 
     public List<String> getAllContractIndex() {
         try {
-            return contractRepository.getAllContractIndex();
-        } catch (IOException e) {
+            return mockServerRepository.getAllContractIndex();
+        } catch (Exception e) {
             log.error("HTTP GET fail when getAllContractIndex: {}", e);
             return new ArrayList<>();
         }
@@ -27,8 +28,8 @@ public class ContractService {
 
     public List<Contract> getContractByIndex(String index) {
         try {
-            return contractRepository.getContractByIndex(index);
-        } catch (IOException e) {
+            return mockServerRepository.getContractByIndex(index);
+        } catch (Exception e) {
             log.error("HTTP GET fail when getContractByIndex[{}]: {}", index, e);
             return new ArrayList<>();
         }
@@ -36,8 +37,8 @@ public class ContractService {
 
     public List<Schema> getSchemaByIndex(List<String> schemaNeeded) {
         try {
-            return contractRepository.getSchemaByIndex(schemaNeeded);
-        } catch (IOException e) {
+            return mockServerRepository.getSchemaByIndex(schemaNeeded);
+        } catch (Exception e) {
             log.error("HTTP GET fail when getSchemaByIndex[{}]: {}", schemaNeeded, e);
             return new ArrayList<>();
         }

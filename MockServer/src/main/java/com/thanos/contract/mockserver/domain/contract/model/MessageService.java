@@ -1,7 +1,5 @@
-package com.thanos.contract.mockserver.domain.contract.mock;
+package com.thanos.contract.mockserver.domain.contract.model;
 
-import com.thanos.contract.mockserver.domain.contract.Contract;
-import com.thanos.contract.mockserver.domain.contract.Schema;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class MessageService {
         this.schemaList = schemaList;
     }
 
-    String process(String inputRequest) {
+    public String process(String inputRequest) {
         final Optional<Message> message = parseAndValidateMsg(inputRequest);
 
         if (message.isPresent()) {

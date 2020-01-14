@@ -1,6 +1,8 @@
 package com.thanos.contract.mockserver.domain.contract;
 
-import com.thanos.contract.mockserver.domain.contract.mock.Message;
+import com.thanos.contract.mockserver.domain.contract.model.Message;
+import com.thanos.contract.mockserver.domain.contract.model.Schema;
+import com.thanos.contract.mockserver.domain.contract.model.SchemaField;
 import com.thanos.contract.mockserver.exception.BizException;
 import org.junit.Before;
 import org.junit.Test;

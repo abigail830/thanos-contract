@@ -1,7 +1,6 @@
-package com.thanos.contract.mockserver.domain.contract;
+package com.thanos.contract.mockserver.domain.contract.model;
 
 import com.google.common.collect.Maps;
-import com.thanos.contract.mockserver.domain.contract.mock.Message;
 import com.thanos.contract.mockserver.exception.BizException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

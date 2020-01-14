@@ -1,4 +1,4 @@
-package com.thanos.contract.mockserver.domain.contract;
+package com.thanos.contract.mockserver.domain.contract.model;
 
 import com.thanos.contract.mockserver.domain.contract.validate.Validator;
 import com.thanos.contract.mockserver.domain.contract.validate.ValidatorFactory;

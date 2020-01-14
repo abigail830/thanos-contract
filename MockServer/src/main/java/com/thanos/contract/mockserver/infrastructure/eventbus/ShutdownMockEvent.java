@@ -9,8 +9,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ContractUpdatedEvent {
+public class ShutdownMockEvent {
+
     String index;
-    String provider;
-    String consumer;
+    int port;
 }
