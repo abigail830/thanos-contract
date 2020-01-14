@@ -9,18 +9,17 @@ System_Boundary(c1, "ThanosContact Core") {
     Container(mockServer, "MockServer", "Java", "Maint mockServer according to contract")
     Container(contractService, "ContractService", "Java", "Maint contracts & schemas")
     Container(codeGenerator, "CodeGenerator", "Java", "Generate Junit Sample according to contract")
-
 }
 
-Rel(user, thanosUI, "HTTP", "via JSON")
-
+Rel(user, thanosUI, "HTTP", "JSON")
 
 Rel(user, mockServer, "TCP", "via JSON")
-Rel(thanosUI, contractService, "HTTP", "via JSON")
-Rel(thanosUI, codeGenerator, "HTTP", "via JSON")
-Rel(thanosUI, mockServer, "HTTP", "via JSON")
+Rel(thanosUI, contractService, "HTTP", "JSON")
+Rel(thanosUI, codeGenerator, "HTTP", "JSON")
+Rel(thanosUI, mockServer, "HTTP", "JSON")
 
-Rel(mockServer, contractService, "HTTP", "via JSON")
-Rel(codeGenerator, contractService, "HTTP", "via JSON")
+Rel(contractService, mockServer, "WebSocket", "or MQ")
+Rel(mockServer, contractService, "HTTP", "JSON")
+Rel(codeGenerator, contractService, "HTTP", "JSON")
 
 @enduml
