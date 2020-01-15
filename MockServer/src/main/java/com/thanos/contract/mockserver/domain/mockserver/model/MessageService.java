@@ -2,6 +2,7 @@ package com.thanos.contract.mockserver.domain.mockserver.model;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,11 +27,12 @@ public class MessageService {
         if (message.isPresent()) {
             Message msg = message.get();
 
-            final List<Contract> contractToMatch = contractList.stream()
-                    .filter(newContract -> newContract.matchSchemaIndex(msg.getMatchedSchema().getIndex()))
+            final List<Contract> matchedContracts = contractList.stream()
+                    .filter(contract -> contract.matchSchemaIndex(msg.getMatchedSchema().getIndex()))
+                    .sorted(Comparator.comparingInt(Contract::getPriority).reversed())
                     .collect(Collectors.toList());
 
-            for (Contract contract : contractToMatch) {
+            for (Contract contract : matchedContracts) {
                 if (msg.matchContract(contract)) {
                     final String result = msg.buildResponse(contract);
                     log.info("Incoming msg [{}] matched, responding [{}]", msg, result);

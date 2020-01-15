@@ -27,6 +27,10 @@ public class Contract {
         return provider + '-' + consumer;
     }
 
+    public Integer getPriority() {
+        return req.size();
+    }
+
     public Boolean matchSchemaIndex(String schemaIndex) {
         return this.getSchemaIndex().equals(schemaIndex);
     }
