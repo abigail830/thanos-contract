@@ -24,7 +24,7 @@ public class MessageServiceTest {
         res.add(new ContractField("field4", "regex(2|3)"));
 
         Contract contract = new Contract("name", "version", "provider-name-version",
-                "contracts/provider", "consumer", req, res);
+                "consumer", "provider", req, res);
 
         //prepare schema
         LinkedList<SchemaField> request = new LinkedList<>();
@@ -36,7 +36,7 @@ public class MessageServiceTest {
         response.add(new SchemaField("field5", "CHAR", 1, "Z"));
         response.add(new SchemaField("field6", "CHAR", 2, "regex(\\d{2})"));
 
-        Schema schema = new Schema("contracts/provider", "version", "name",
+        Schema schema = new Schema("provider", "version", "name",
                 request, response);
 
         messageService = new MessageService(Arrays.asList(contract), Arrays.asList(schema));
