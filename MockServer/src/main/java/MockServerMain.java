@@ -33,12 +33,14 @@ public class MockServerMain {
             PropertiesParser propertiesParser = new PropertiesParser();
             propertiesParser.init();
 
-            //startup web server
+            //prepare services
             mockMappingService = new MockMappingService();
-            startupWebServer(mockMappingService);
+            mockServerService = new MockServerService();
+
+            //startup restful web server
+            startupWebServer(mockMappingService, mockServerService);
 
             //startup mockController
-            mockServerService = new MockServerService();
             mockServerController = new MockServerController(mockMappingService, mockServerService);
             mockServerController.initMock();
 
@@ -75,13 +77,14 @@ public class MockServerMain {
         }));
     }
 
-    private static void startupWebServer(MockMappingService mockMappingService) throws IOException {
+    private static void startupWebServer(MockMappingService mockMappingService,
+                                         MockServerService mockServerService) throws IOException {
         PropertiesParser.getPropValues("port")
                 .ifPresent(s -> httpPort = Integer.valueOf(s));
 
         webServer = httpServer()
                 .withHttpPort(httpPort)
-                .addHandler(RestHandlerBuilder.restHandler(new RestApiController(mockMappingService))
+                .addHandler(RestHandlerBuilder.restHandler(new RestApiController(mockMappingService, mockServerService))
                         .addCustomWriter(new JacksonJaxbJsonProvider())
                         .addCustomReader(new JacksonJaxbJsonProvider())
                         .withOpenApiJsonUrl("/openapi.json")

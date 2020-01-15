@@ -1,4 +1,4 @@
-name: 'test_case_2'
+name: 'contract2'
 consumer: 'consumer2'
 version: 'v1'
 schema:

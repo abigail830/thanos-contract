@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Getter
 @ToString
@@ -33,12 +32,12 @@ public class Contract {
     }
 
     public String getContractExpectValue(String schemaFieldName) {
-        final List<ContractField> result = res.stream()
+        final Optional<ContractField> contractField = res.stream()
                 .filter(response -> response.getName().equals(schemaFieldName))
-                .collect(Collectors.toList());
+                .findFirst();
 
-        if (result.size() >= 1) {
-            return result.get(0).getValidator().getExpectedValue();
+        if (contractField.isPresent()) {
+            return contractField.get().getValidator().getExpectedValue();
         } else {
             return "";
         }
