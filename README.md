@@ -48,5 +48,6 @@ Different from **SpringCloudContract** & **Pact**, ThanosContract support(& only
 <img src="https://plantuml-server.kkeisuke.app/svg/ZLF1JkCm4BtxAsPxM1LfQRHIJtk2ZH2xI0LsqufZDNL6ZOLZH_Qu9KBxxskNbYGj27AnntdlpPldvC8pEWwrXdowlD9Kas4llYWZTIWfE0qLS-D_P9d3xMIjk0ghuCb9QpX29zBMsLD0qrBMQ3H9wTnpg-bSJhCQFPFBv7IPuAWCkKaJ4K9SIhPkd8I-mMWHbr5SSsjygCbv-0htpcvK6VUZCo6ADkhKowid7dE5nlh5xmYVxxU9EiDsHN3Pg6jasc8Bw65BMlVOFsqm9RfsBB-_alDaIpBarj7e39u5n2S_U1tNLZuMv3OxbxFN8ZMymGs-D5Q6eGC2IcbTgSmQs48QsyK6qSPG-V0YaPIab-7x9wSz3fIKZfSLnN3Va2tfck8EOxmxqLxTbzmV4jm4enWAh1jDxth_9yHVqllhwjt0h_dyVgTQtDscf3lG8BbvlaDj5C8UcO2TpcaOHyB7yE6Gf-3bBQbrjOfVMCSQE7hB-8cB0UE1LaMiYHFDEfZzEMxLXtzceevvDD27P751feo_qNy0.svg" width="550" >
 
 
-
+## License
+ThanosContract is under [MIT](LICENSE) license
 
