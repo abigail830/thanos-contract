@@ -22,7 +22,7 @@ public class SchemaTest {
         request.add(new SchemaField("field2", "CHAR", 1, "regex(0|1)"));
 
         LinkedList<SchemaField> response = new LinkedList<>();
-        schema = new Schema("provider", "version", "name",
+        schema = new Schema("contracts/provider", "version", "name",
                 request, response);
     }
 

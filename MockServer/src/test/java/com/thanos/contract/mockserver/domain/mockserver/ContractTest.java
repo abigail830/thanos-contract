@@ -24,7 +24,7 @@ public class ContractTest {
         res.add(new ContractField("field4", "1"));
 
         contract = new Contract("name", "version", "schemaIndex",
-                "provider", "consumer", req, res);
+                "contracts/provider", "consumer", req, res);
     }
 
     @Test

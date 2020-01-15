@@ -25,7 +25,7 @@ public class MessageTest {
         LinkedList<ContractField> req = new LinkedList<>();
         req.add(new ContractField("field1", "value1"));
         Contract contract = new Contract("name", "version", "schemaIndex",
-                "provider", "consumer", req, new LinkedList<>());
+                "contracts/provider", "consumer", req, new LinkedList<>());
 
         assertTrue(message.matchContract(contract));
     }
@@ -37,7 +37,7 @@ public class MessageTest {
         req.add(new ContractField("field1", "value1"));
         req.add(new ContractField("field2", "regex(0|1)"));
         Contract contract = new Contract("name", "version", "schemaIndex",
-                "provider", "consumer", req, new LinkedList<>());
+                "contracts/provider", "consumer", req, new LinkedList<>());
 
         assertTrue(message.matchContract(contract));
     }
@@ -47,7 +47,7 @@ public class MessageTest {
         LinkedList<ContractField> req = new LinkedList<>();
         req.add(new ContractField("field1", "value2"));
         Contract contract = new Contract("name", "version", "schemaIndex",
-                "provider", "consumer", req, new LinkedList<>());
+                "contracts/provider", "consumer", req, new LinkedList<>());
 
         assertFalse(message.matchContract(contract));
     }
@@ -59,7 +59,7 @@ public class MessageTest {
         req.add(new ContractField("field1", "value1"));
         req.add(new ContractField("field2", "regex(1|2)"));
         Contract contract = new Contract("name", "version", "schemaIndex",
-                "provider", "consumer", req, new LinkedList<>());
+                "contracts/provider", "consumer", req, new LinkedList<>());
 
         assertFalse(message.matchContract(contract));
     }
@@ -70,12 +70,12 @@ public class MessageTest {
         res.add(new ContractField("field1", "value1"));
         res.add(new ContractField("field2", "regex(1|2)"));
         Contract contract = new Contract("name", "version", "schemaIndex",
-                "provider", "consumer", new LinkedList<>(), res);
+                "contracts/provider", "consumer", new LinkedList<>(), res);
 
         LinkedList<SchemaField> response = new LinkedList<>();
         response.add(new SchemaField("field1", "CHAR", 6, "value1"));
         response.add(new SchemaField("field2", "CHAR", 1, "regex(1|2|3)"));
-        Schema schema = new Schema("provider", "version", "name",
+        Schema schema = new Schema("contracts/provider", "version", "name",
                 new LinkedList<>(), response);
 
         message = new Message(schema, new LinkedHashMap<>());
