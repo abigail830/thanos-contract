@@ -42,9 +42,9 @@ Different from **SpringCloudContract** & **Pact**, ThanosContract support(& only
 * Content内容可以是某些固定值，也可以是正则（regex开头），将来还会支持定制化FUNC
 * 下面所有都是必填， request/response里面是列表
 * Field列表里面固定4个元素name/type/length/content (方便后续对接UI的表格）
+* Schema必须把接口里面的所有field完整定义好
 
 **FileBase Format**
-
 ``` yaml
 name: 'schema1'
 version: 'v1'
@@ -79,6 +79,9 @@ public class SchemaFieldDTO {
 ```
 
 ## Contract 契约
+
+* 契约里面不需要把全部field都填上，只需要写出该场景下关键的field就可以了，其他可以随意内容的参数可以忽略
+* 后续在匹配时候会按照契约优先排序进行匹配，req部分定义了越多的field优先级就越高，优先匹配
 
 **FileBase Format**
 ``` yaml
