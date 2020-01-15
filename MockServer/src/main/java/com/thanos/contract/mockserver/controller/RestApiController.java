@@ -43,9 +43,9 @@ public class RestApiController {
     @Produces({MediaType.APPLICATION_JSON})
     public String buildRequestForContract(@QueryParam("consumer") String consumer,
                                           @QueryParam("provider") String provider,
-                                          @QueryParam("name") String name,
-                                          @QueryParam("version") String version) {
-        return mockServerService.buildRequestForContract(consumer, provider, name, version);
+                                          @QueryParam("contractName") String contractName,
+                                          @QueryParam("contractVersion") String contractVersion) {
+        return mockServerService.buildRequestForContract(consumer, provider, contractName, contractVersion);
     }
 
 }
