@@ -32,12 +32,21 @@ Different from **SpringCloudContract** & **Pact**, ThanosContract support(& only
 
 ## Components 系统组件
 
-### Draft diagram 设计草图
+### MockServer 挡板服务
+* STANDALONE模式：能根据路径内的契约文件自动生成对应的挡板服务
+* PLATFORM模式：能从ContractService中获取最新契约及更新，动态维护挡板服务
+
+### CodeGenerator 代码生成引擎
+* STANDALONE模式：根据指定路径的契约文件自动生成对应的生产者测试案例，可按需复制黏贴到项目工程代码中。
+* PLUGIN模式(?)：插件根据生产者项目工程路径内的契约文件自动生成对应的生产者测试案例，可直接修改运行。
+* PLATFORM模式：能从ContractService中获取最新契约及更新，动态生成对应的生产者测试案例
+
+### ContractService 契约管理服务
+* PLATFORM模式：契约等内容的统一管理（CRUD）
+
+### PLATFORM mode draft diagram 设计草图
 <img src="https://plantuml-server.kkeisuke.app/svg/ZLF1JkCm4BtxAsPxM1LfQRHIJtk2ZH2xI0LsqufZDNL6ZOLZH_Qu9KBxxskNbYGj27AnntdlpPldvC8pEWwrXdowlD9Kas4llYWZTIWfE0qLS-D_P9d3xMIjk0ghuCb9QpX29zBMsLD0qrBMQ3H9wTnpg-bSJhCQFPFBv7IPuAWCkKaJ4K9SIhPkd8I-mMWHbr5SSsjygCbv-0htpcvK6VUZCo6ADkhKowid7dE5nlh5xmYVxxU9EiDsHN3Pg6jasc8Bw65BMlVOFsqm9RfsBB-_alDaIpBarj7e39u5n2S_U1tNLZuMv3OxbxFN8ZMymGs-D5Q6eGC2IcbTgSmQs48QsyK6qSPG-V0YaPIab-7x9wSz3fIKZfSLnN3Va2tfck8EOxmxqLxTbzmV4jm4enWAh1jDxth_9yHVqllhwjt0h_dyVgTQtDscf3lG8BbvlaDj5C8UcO2TpcaOHyB7yE6Gf-3bBQbrjOfVMCSQE7hB-8cB0UE1LaMiYHFDEfZzEMxLXtzceevvDD27P751feo_qNy0.svg" width="550" >
 
 
-## Progress
 
-* Basic MockServer
-* Basic ContractService
 
