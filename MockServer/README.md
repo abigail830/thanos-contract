@@ -1,5 +1,15 @@
 # MockServer
 
+
+## Functions
+
+* Startup diff MockServerThread, each thread serve for provider-consumer pair and via diff port
+* Port mapping could be get via HTTP GET via API, API doc could be found at root or http://localhost:8082/api.html
+* When standalone mode, contract & schema would be load from file base and no dynamic update
+* When non-standalone mode, contract & schema would be load from contract service HTTP, dynamic update is not implement yet.
+* Also provided utils, said could generate request msg base on contract, and parse message base on schema. 
+
+
 ## Component Diagram
 
 <img src="https://plantuml-server.kkeisuke.app/svg/bLLDZzem4BtdLxWSMYgr6xNggQU5BFjHmJQ2eAedP981t3fsQZkmgEf_xpXVc40GcqliySoRDyzZ-rORgaoUSkyD4p7F4yWL9njZCltLznNTtQoPsUJBN8EAfJ0Wp4qiKt_AOgeI-SmW0-u7Npw6d0epdupzb6e32asBGAQP53OYimdUaLnWQ8e6OZP0Lf9pkMDYJJWJGAX8oD4oKnf7ac1gmcLCETyZHasJd2RmneEVt-VHOZowZnRJfuV7oFD2K5gAFbBNUGhgqmVIcsCfFVpVmTQFm9BjlM_xVSRre1gV-CxsE4WNenTZ_OsYiPc1sh8OogZ2GYeJ-dlMHh56jHZAN2HKxViqO-WyaV5lwsTXoL-FuDVKrD_1Sg6BHVISOl8ViAoSAyCWOqKw51BKpI-wfVNAAkTa43wHmpBoAE4hAdVBVehP0nfl2jhsRwE_LIYMseHccTsVcP4A6e2QNsn3dCATwG6eLrbmjnLnCC_GMJ4EGwgXfdJlpYtYp62FK8xP4IafJBKFQMH_IsRedj8JkccZzO7pf6th8FuQz8FaHmcSdN1Khgpau1Tj5D3a0dxfS8HTnJYueP8nQ8tKBNr01PqKf2E7miO9ECDXrKNbnCLzjkAtzm4xV0gyGm87jFSOHI5v64MexWEO0UUrhayYWHV4wOOvgR_UfW1d1eY07TuQLLclWHbjaTemrtR7DxcvapjXbIhC9r2rzcV1NQXds3dDVXciMw5Q7ZtS5mhvQp1b_zMMYyMs3cWbs219oE4GNYFL5H3kNNKX46iYSyCuMU5JO9WKLVWnK_TUmbupBEwaNRcrAcs2fYZm1QP7OJN7Cp6jcwbzKJNfnX93wqqx4RVXrnbVf7RY_vK7otcyZju4sopsK5fLdTCTIbKdTvwpCnT858JbU_4dnnOa4xskZx9x4xIVkEjEyIiGhkfoxnP4We_yVm00.svg" >
