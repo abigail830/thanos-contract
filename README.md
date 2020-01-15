@@ -1,6 +1,7 @@
 # ThanosContract 灭霸契约
 
-[![Build Status](https://travis-ci.org/abigail830/ThanosContract.svg?branch=master)](https://travis-ci.org/abigail830/ThanosContract)
+[![Travis Build Status](https://travis-ci.org/abigail830/ThanosContract.svg?branch=master)](https://travis-ci.org/abigail830/ThanosContract)
+[![Jitpack Statuc](https://jitpack.io/v/abigail830/thanoscontract.svg)](https://jitpack.io/#abigail830/thanoscontract)
 
 ## Vision 愿景
 
