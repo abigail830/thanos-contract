@@ -11,9 +11,9 @@ request:
   length: 1
   content: 'regex(0|1)'
 - name: MESSAGE_TYPE
-  type: NUM
-  length: 5
-  content: '10400'
+  type: CHAR
+  length: 7
+  content: 'schema2'
 - name: TCODE
   type: NUM
   length: 6

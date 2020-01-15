@@ -26,4 +26,12 @@ public class MockMappingService {
         return new ArrayList<>(allMockMapping.keySet());
     }
 
+    public void cleanupMockMapping() {
+        MockMappingCache.cleanupMockMapping();
+    }
+
+    public Integer getPortByIndex(String index) {
+        return MockMappingCache.getAllMockMapping().get(index);
+    }
+
 }

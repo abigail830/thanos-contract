@@ -20,6 +20,8 @@ public class MockServerMain {
 
     private static MuServer webServer;
     private static MockServerController mockServerController;
+    private static MockMappingService mockMappingService;
+    private static MockServerService mockServerService;
 
     public static void main(String[] args) {
         start();
@@ -32,11 +34,12 @@ public class MockServerMain {
             propertiesParser.init();
 
             //startup web server
-            final MockMappingService mockMappingService = new MockMappingService();
+            mockMappingService = new MockMappingService();
             startupWebServer(mockMappingService);
 
             //startup mockController
-            mockServerController = new MockServerController(mockMappingService, new MockServerService());
+            mockServerService = new MockServerService();
+            mockServerController = new MockServerController(mockMappingService, mockServerService);
             mockServerController.initMock();
 
             printStartupLog();
@@ -62,6 +65,8 @@ public class MockServerMain {
 
     static void addShutdownHook() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            log.info("Going to cleanup MockMapping cache ...");
+            mockMappingService.cleanupMockMapping();
             log.info("Going to shutdown webServer ...");
             webServer.stop();
             log.info("###########################################");
@@ -89,5 +94,13 @@ public class MockServerMain {
                 })).start();
 
         log.info("Web Server started at " + webServer.uri());
+    }
+
+    public MockMappingService getMockMappingService() {
+        return mockMappingService;
+    }
+
+    public MockServerService getMockServerService() {
+        return mockServerService;
     }
 }

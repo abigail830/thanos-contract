@@ -21,4 +21,8 @@ public class MockMappingCache {
         return mockMappings;
     }
 
+    static synchronized void cleanupMockMapping() {
+        mockMappings = new HashMap<>();
+    }
+
 }
