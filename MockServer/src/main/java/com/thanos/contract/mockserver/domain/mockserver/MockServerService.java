@@ -1,6 +1,7 @@
 package com.thanos.contract.mockserver.domain.mockserver;
 
 import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
+import com.thanos.contract.mockserver.domain.mockserver.model.Message;
 import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.exception.BizException;
 import com.thanos.contract.mockserver.infrastructure.cache.FileBaseCacheRepoImpl;
@@ -44,7 +45,6 @@ public class MockServerService {
 
     public String buildRequestForContract(String consumer, String provider,
                                           String contractName, String contractVersion) {
-
         String contractIndex = provider + '-' + consumer;
         final Contract matchedContract = getContractByIndex(contractIndex).stream()
                 .filter(contract -> contract.getName().equalsIgnoreCase(contractName))
@@ -62,6 +62,14 @@ public class MockServerService {
                         .findFirst()
                         .orElse(schemaField.getValidator().getExpectedValue()))
                 .collect(Collectors.joining());
+    }
 
+    public String parseRequest(String request, String provider, String schemaName, String schemaVersion) {
+        String schemaIndex = provider + '-' + schemaName + '-' + schemaVersion;
+        final Schema matchedSchema = getSchemaByIndex(Arrays.asList(schemaIndex))
+                .stream().findFirst().orElseThrow(() -> new BizException("Fail to get associated schema"));
+
+        final Message message = matchedSchema.parseRequest(request);
+        return message.getParseRequest().toString();
     }
 }

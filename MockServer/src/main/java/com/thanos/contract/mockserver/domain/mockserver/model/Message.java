@@ -51,4 +51,8 @@ public class Message {
         }
         return result.toString();
     }
+
+    public LinkedHashMap<String, String> getParseRequest() {
+        return parseRequest;
+    }
 }
