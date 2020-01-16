@@ -10,13 +10,13 @@
 * [x] 为每对生产者-消费者启动挡板服务。Startup diff MockServerThread, each thread serve for provider-consumer pair and via diff port
 * [x] 能通过REST API查询TCP挡板服务端口。Port mapping could be get via HTTP GET via API, API doc could be found at root or http://localhost:8082/api.html
 * [x] 支持Standalone单机模式，启动时文本获取契约信息，没有动态更新。When standalone mode, contract & schema would be load from file base and no dynamic update
-* [x] 支持Platform平台模式，启东市从ContractService获取契约信息。 When non-standalone mode, contract & schema would be load from contract service HTTP, dynamic update is not implement yet.
+* [x] 支持Platform平台模式，启动时从ContractService获取契约信息。 When non-standalone mode, contract & schema would be load from contract service HTTP, dynamic update is not implement yet.
 * [x] REST API辅助工具：根据契约生成定长请求报文，根据接口定义解释定长报文。Also provided utils, said could generate request msg base on contract, and parse message base on schema. 
 
 ### TODO
-* [ ] Platform平台模式下，接收ContractService动态更新
-* [ ] Platform模式下Rest请求ContractService需要添加重试机制
-* [ ] 挡板服务启动时支持白名单、黑名单配置
+* [ ] Platform平台模式下，接收ContractService动态更新. Support dynamic update in platform mode
+* [ ] Platform模式下Rest请求ContractService需要添加重试机制. Enhance retry logic in platform mode
+* [ ] 挡板服务启动时支持白名单、黑名单配置. Enhance with white list and black list config
 
 
 ## How to use
