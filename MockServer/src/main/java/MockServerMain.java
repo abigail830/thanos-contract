@@ -39,10 +39,10 @@ public class MockServerMain {
             propertiesParser.init();
 
             //prepare infrastructure
-            if (PropertiesParser.getStandaloneFlag()) {
-                mockServerRepository = new FileBaseCacheRepoImpl();
-            } else {
+            if (PropertiesParser.isPlatformMode()) {
                 mockServerRepository = new ContractRestClientRepoImpl();
+            } else {
+                mockServerRepository = new FileBaseCacheRepoImpl();
             }
 
             //prepare services
@@ -71,7 +71,7 @@ public class MockServerMain {
     }
 
     synchronized static void printStartupLog() {
-        log.info("Startup as standalone mode: {}", PropertiesParser.getStandaloneFlag());
+        log.info("Startup as standalone mode: {}", PropertiesParser.isPlatformMode());
         log.info("###########################################");
         log.info("            Service is up!                 ");
         log.info("###########################################");

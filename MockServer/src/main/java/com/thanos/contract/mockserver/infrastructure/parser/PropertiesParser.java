@@ -29,8 +29,8 @@ public class PropertiesParser {
         }
     }
 
-    public static Boolean getStandaloneFlag() {
-        return new Boolean(prop.getProperty("standalone"));
+    public static Boolean isPlatformMode() {
+        return new Boolean(prop.getProperty("platformMode"));
     }
 
     public static String getContractServiceBaseHttpPath() {
