@@ -7,9 +7,13 @@ import java.util.Map;
 
 public class MockMappingCache {
 
-    private static Map<String, Integer> mockMappings = new HashMap<>();
+    private static Map<String, Integer> mockMappings;
 
-    static synchronized void addNewMockMapping(MockMapping mockMapping) {
+    public MockMappingCache() {
+        mockMappings = new HashMap<>();
+    }
+
+    synchronized void addNewMockMapping(MockMapping mockMapping) {
         if (mockMappings.containsKey(mockMapping.getIndex()))
             throw new BizException("MockServer already existed at" +
                     mockMapping.getIndex() + "/" + mockMappings.get(mockMapping.getIndex()));
@@ -17,11 +21,11 @@ public class MockMappingCache {
             mockMappings.put(mockMapping.getIndex(), mockMapping.getPort());
     }
 
-    static synchronized Map<String, Integer> getAllMockMapping() {
+    synchronized Map<String, Integer> getAllMockMapping() {
         return mockMappings;
     }
 
-    static synchronized void cleanupMockMapping() {
+    synchronized void cleanupMockMapping() {
         mockMappings = new HashMap<>();
     }
 

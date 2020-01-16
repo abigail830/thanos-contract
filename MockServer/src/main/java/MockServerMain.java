@@ -1,8 +1,12 @@
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 import com.thanos.contract.mockserver.controller.MockServerController;
 import com.thanos.contract.mockserver.controller.RestApiController;
+import com.thanos.contract.mockserver.domain.mapping.MockMappingCache;
 import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
+import com.thanos.contract.mockserver.domain.mockserver.MockServerRepository;
 import com.thanos.contract.mockserver.domain.mockserver.MockServerService;
+import com.thanos.contract.mockserver.infrastructure.cache.FileBaseCacheRepoImpl;
+import com.thanos.contract.mockserver.infrastructure.client.ContractRestClientRepoImpl;
 import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import io.muserver.Method;
 import io.muserver.MuServer;
@@ -22,6 +26,7 @@ public class MockServerMain {
     private static MockServerController mockServerController;
     private static MockMappingService mockMappingService;
     private static MockServerService mockServerService;
+    private static MockServerRepository mockServerRepository;
 
     public static void main(String[] args) {
         start();
@@ -33,9 +38,16 @@ public class MockServerMain {
             PropertiesParser propertiesParser = new PropertiesParser();
             propertiesParser.init();
 
+            //prepare infrastructure
+            if (PropertiesParser.getStandaloneFlag()) {
+                mockServerRepository = new FileBaseCacheRepoImpl();
+            } else {
+                mockServerRepository = new ContractRestClientRepoImpl();
+            }
+
             //prepare services
-            mockMappingService = new MockMappingService();
-            mockServerService = new MockServerService();
+            mockMappingService = new MockMappingService(new MockMappingCache());
+            mockServerService = new MockServerService(mockServerRepository);
 
             //startup restful web server
             startupWebServer(mockMappingService, mockServerService);

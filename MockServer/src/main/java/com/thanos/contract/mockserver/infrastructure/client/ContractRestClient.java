@@ -4,6 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import com.thanos.contract.mockserver.exception.InfraException;
 import com.thanos.contract.mockserver.infrastructure.dto.ContractDTO;
 import com.thanos.contract.mockserver.infrastructure.dto.SchemaDTO;
+import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -16,11 +17,16 @@ import java.util.List;
 @Slf4j
 public class ContractRestClient {
 
-    private static final String CONTRACT_SERVICE_BASE_URL = "http://localhost:8081/apis";
-    OkHttpClient client = new OkHttpClient();
+    private OkHttpClient client;
+    private String basePath;
+
+    public ContractRestClient() {
+        this.basePath = PropertiesParser.getContractServiceBaseHttpPath();
+        this.client = new OkHttpClient();
+    }
 
     public List<String> getAllContractIndex() throws IOException, InfraException {
-        HttpUrl.Builder urlBuild = HttpUrl.parse(CONTRACT_SERVICE_BASE_URL + "/contracts/indexs").newBuilder();
+        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/contracts/indexs").newBuilder();
         final String url = urlBuild.build().toString();
         log.debug("url going to approach is: {}", url);
 
@@ -32,7 +38,7 @@ public class ContractRestClient {
     }
 
     public List<ContractDTO> getContractByIndex(String indexName) throws IOException, InfraException {
-        HttpUrl.Builder urlBuild = HttpUrl.parse(CONTRACT_SERVICE_BASE_URL + "/contracts").newBuilder();
+        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/contracts").newBuilder();
         urlBuild.addQueryParameter("index", indexName);
         final String url = urlBuild.build().toString();
         log.debug("url going to approach is: {}", url);
@@ -45,7 +51,7 @@ public class ContractRestClient {
     }
 
     public List<SchemaDTO> getSchemaByIndex(List<String> schemaNeededs) throws IOException, InfraException {
-        HttpUrl.Builder urlBuild = HttpUrl.parse(CONTRACT_SERVICE_BASE_URL + "/schemas").newBuilder();
+        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/schemas").newBuilder();
         schemaNeededs.forEach(schemaIndex -> {
             urlBuild.addQueryParameter("index", schemaIndex);
         });

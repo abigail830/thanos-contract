@@ -4,9 +4,6 @@ import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
 import com.thanos.contract.mockserver.domain.mockserver.model.Message;
 import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.exception.BizException;
-import com.thanos.contract.mockserver.infrastructure.cache.FileBaseCacheRepoImpl;
-import com.thanos.contract.mockserver.infrastructure.client.ContractRestClientRepoImpl;
-import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
@@ -18,16 +15,8 @@ public class MockServerService {
 
     private MockServerRepository mockServerRepository;
 
-    public MockServerService() {
-        mockServerRepository = initRepositoryImpl();
-    }
-
-    MockServerRepository initRepositoryImpl() {
-        if (PropertiesParser.getStandaloneFlag()) {
-            return new FileBaseCacheRepoImpl();
-        } else {
-            return new ContractRestClientRepoImpl();
-        }
+    public MockServerService(MockServerRepository mockServerRepository) {
+        this.mockServerRepository = mockServerRepository;
     }
 
     public List<String> getAllContractIndex() {

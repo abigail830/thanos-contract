@@ -32,4 +32,8 @@ public class PropertiesParser {
     public static Boolean getStandaloneFlag() {
         return new Boolean(prop.getProperty("standalone"));
     }
+
+    public static String getContractServiceBaseHttpPath() {
+        return prop.getProperty("contractService.baseHttpPath");
+    }
 }

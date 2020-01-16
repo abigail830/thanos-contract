@@ -10,28 +10,34 @@ import java.util.stream.Collectors;
 
 public class MockMappingService {
 
+    private MockMappingCache mockMappingCache;
+
+    public MockMappingService(MockMappingCache mockMappingCache) {
+        this.mockMappingCache = mockMappingCache;
+    }
+
     public List<MockMapping> getAllMockMapping() {
-        final Map<String, Integer> allMockMapping = MockMappingCache.getAllMockMapping();
+        final Map<String, Integer> allMockMapping = mockMappingCache.getAllMockMapping();
         return allMockMapping.keySet().stream()
                 .map(key -> new MockMapping(key, allMockMapping.get(key)))
                 .collect(Collectors.toList());
     }
 
     public void addNewMockMapping(MockMapping mockMapping) throws BizException {
-        MockMappingCache.addNewMockMapping(mockMapping);
+        mockMappingCache.addNewMockMapping(mockMapping);
     }
 
     public List<String> getAllMockMappingIndexs() throws BizException {
-        final Map<String, Integer> allMockMapping = MockMappingCache.getAllMockMapping();
+        final Map<String, Integer> allMockMapping = mockMappingCache.getAllMockMapping();
         return new ArrayList<>(allMockMapping.keySet());
     }
 
     public void cleanupMockMapping() {
-        MockMappingCache.cleanupMockMapping();
+        mockMappingCache.cleanupMockMapping();
     }
 
     public Integer getPortByIndex(String index) {
-        return MockMappingCache.getAllMockMapping().get(index);
+        return mockMappingCache.getAllMockMapping().get(index);
     }
 
 }

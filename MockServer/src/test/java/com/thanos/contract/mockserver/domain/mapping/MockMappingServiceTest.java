@@ -8,7 +8,7 @@ public class MockMappingServiceTest {
 
     @Test
     public void getAllMockMapping() {
-        final MockMappingService service = new MockMappingService();
+        final MockMappingService service = new MockMappingService(new MockMappingCache());
         service.cleanupMockMapping();
         service.addNewMockMapping(new MockMapping("index", 1234));
 
