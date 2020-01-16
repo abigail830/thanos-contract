@@ -14,6 +14,8 @@
 * [x] REST API辅助工具：根据契约生成定长请求报文，根据接口定义解释定长报文。Also provided utils, said could generate request msg base on contract, and parse message base on schema. 
 
 ### TODO
+* [ ] 预定义常用正则Validator。 Pre-define Regex Validator
+* [ ] 预定义一个FuncValidator(如DateTime)。Pre-define a FuncValidator
 * [ ] Platform平台模式下，接收ContractService动态更新. Support dynamic update in platform mode
 * [ ] Platform模式下Rest请求ContractService需要添加重试机制. Enhance retry logic in platform mode
 * [ ] 挡板服务启动时支持白名单、黑名单配置. Enhance with white list and black list config
