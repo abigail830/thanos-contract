@@ -1,5 +1,6 @@
 package com.thanos.contract.mockserver.domain.mockserver;
 
+import com.google.common.base.Strings;
 import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
 import com.thanos.contract.mockserver.domain.mockserver.model.Message;
 import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
@@ -37,6 +38,9 @@ public class MockServerService {
 
     public String buildRequestForContract(String consumer, String provider,
                                           String contractName, String contractVersion) {
+
+        validationInput(consumer, provider);
+
         String contractIndex = provider + '-' + consumer;
         final Contract matchedContract = getContractByIndex(contractIndex).stream()
                 .filter(contract -> contract.getName().equalsIgnoreCase(contractName))
@@ -56,6 +60,11 @@ public class MockServerService {
                 .collect(Collectors.joining());
     }
 
+    void validationInput(String consumer, String provider) {
+        if (Strings.isNullOrEmpty(consumer) || Strings.isNullOrEmpty(provider))
+            throw new BizException("Invalid null or empty input parameter.");
+    }
+
     public String parseRequest(String request, String provider, String schemaName, String schemaVersion) {
         String schemaIndex = provider + '-' + schemaName + '-' + schemaVersion;
         final Schema matchedSchema = getSchemaByIndex(Arrays.asList(schemaIndex))
@@ -66,12 +75,22 @@ public class MockServerService {
     }
 
     public void addOrUpdateSchema(Schema schema) {
-        EventBusFactory.getInstance().post(new SchemaUpdateEvent(schema));
-        log.debug("SchemaUpdateEvent send [{}]", schema);
+        if (schema.isValid()) {
+            EventBusFactory.getInstance().post(new SchemaUpdateEvent(schema));
+            log.debug("SchemaUpdateEvent send [{}]", schema);
+        } else {
+            throw new BizException("Invalid input");
+        }
     }
 
     public void addOrUpdateContract(Contract contract) {
-        EventBusFactory.getInstance().post(new ContractUpdateEvent(contract));
-        log.debug("ContractUpdateEvent send [{}]", contract);
+        if (contract.isValid()) {
+            EventBusFactory.getInstance().post(new ContractUpdateEvent(contract));
+            log.debug("ContractUpdateEvent send [{}]", contract);
+        } else {
+            throw new BizException("Invalid input");
+        }
+
+
     }
 }

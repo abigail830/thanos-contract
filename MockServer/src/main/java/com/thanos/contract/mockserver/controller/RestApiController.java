@@ -46,25 +46,35 @@ public class RestApiController {
     @POST
     @Path("/schemas")
     public Response addOrUpdateSchema(SchemaDTO schemaDTO) {
-        if (PropertiesParser.isPlatformMode()) {
-            mockServerService.addOrUpdateSchema(schemaDTO.toSchema());
-            return Response.accepted().build();
-        } else {
-            return Response.status(Response.Status.METHOD_NOT_ALLOWED)
-                    .entity("This API only allowed in platform mode").build();
+        try {
+            if (PropertiesParser.isPlatformMode()) {
+                mockServerService.addOrUpdateSchema(schemaDTO.toSchema());
+                return Response.accepted().build();
+            } else {
+                return Response.status(Response.Status.METHOD_NOT_ALLOWED)
+                        .entity("This API only allowed in platform mode").build();
+            }
+        } catch (BizException ex) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
         }
+
     }
 
     @POST
     @Path("/contracts")
     public Response addOrUpdateContracts(ContractDTO contractDTO) {
-        if (PropertiesParser.isPlatformMode()) {
-            mockServerService.addOrUpdateContract(contractDTO.toContract());
-            return Response.accepted().build();
-        } else {
-            return Response.status(Response.Status.METHOD_NOT_ALLOWED)
-                    .entity("This API only allowed in platform mode").build();
+        try {
+            if (PropertiesParser.isPlatformMode()) {
+                mockServerService.addOrUpdateContract(contractDTO.toContract());
+                return Response.accepted().build();
+            } else {
+                return Response.status(Response.Status.METHOD_NOT_ALLOWED)
+                        .entity("This API only allowed in platform mode").build();
+            }
+        } catch (BizException ex) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
         }
+
     }
 
 

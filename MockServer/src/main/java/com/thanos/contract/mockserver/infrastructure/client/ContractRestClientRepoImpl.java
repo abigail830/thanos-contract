@@ -36,7 +36,9 @@ public class ContractRestClientRepoImpl implements MockServerRepository {
     public List<Contract> getContractByIndex(String index) throws BizException {
         try {
             return restClient.getContractByIndex(index).stream()
-                    .map(ContractDTO::toContract).collect(Collectors.toList());
+                    .map(ContractDTO::toContract)
+                    .filter(Contract::isValid)
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             log.error("Fail to HTTP GET getContractByIndex", e);
             return new ArrayList<>();
@@ -47,7 +49,9 @@ public class ContractRestClientRepoImpl implements MockServerRepository {
     public List<Schema> getSchemaByIndex(List<String> schemaNeeded) throws BizException {
         try {
             return restClient.getSchemaByIndex(schemaNeeded).stream()
-                    .map(SchemaDTO::toSchema).collect(Collectors.toList());
+                    .map(SchemaDTO::toSchema)
+                    .filter(Schema::isValid)
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             log.error("Fail to HTTP GET getSchemaByIndex", e);
             return new ArrayList<>();
