@@ -7,6 +7,7 @@ import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
 import com.thanos.contract.mockserver.domain.mockserver.MockServerService;
 import com.thanos.contract.mockserver.domain.mockserver.MockServerThread;
 import com.thanos.contract.mockserver.exception.BizException;
+import com.thanos.contract.mockserver.infrastructure.eventbus.ContractUpdateEvent;
 import com.thanos.contract.mockserver.infrastructure.eventbus.EventBusFactory;
 import com.thanos.contract.mockserver.infrastructure.eventbus.NewMockMappingEvent;
 import com.thanos.contract.mockserver.infrastructure.eventbus.ShutdownMockEvent;
@@ -62,6 +63,13 @@ public class MockServerController {
         } catch (BizException ex) {
             asyncEventBus.post(
                     new ShutdownMockEvent(newMockMappingEvent.getIndex(), newMockMappingEvent.getPort()));
+        }
+    }
+
+    @Subscribe
+    public void receiveContractUpdateEvent(ContractUpdateEvent contractUpdateEvent) {
+        if (!startedIndexs.contains(contractUpdateEvent.getIndex())) {
+            createNewMockForIndex(contractUpdateEvent.getIndex());
         }
     }
 

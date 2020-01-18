@@ -38,7 +38,8 @@ public class MockServerMain {
             PropertiesParser propertiesParser = new PropertiesParser();
             propertiesParser.init();
 
-            //prepare infrastructure
+
+            // for diff mode
             if (PropertiesParser.isPlatformMode()) {
                 mockServerRepository = new ContractRestClientRepoImpl();
             } else {
@@ -96,7 +97,8 @@ public class MockServerMain {
 
         webServer = httpServer()
                 .withHttpPort(httpPort)
-                .addHandler(RestHandlerBuilder.restHandler(new RestApiController(mockMappingService, mockServerService))
+                .addHandler(RestHandlerBuilder.restHandler(
+                        new RestApiController(mockMappingService, mockServerService))
                         .addCustomWriter(new JacksonJaxbJsonProvider())
                         .addCustomReader(new JacksonJaxbJsonProvider())
                         .withOpenApiJsonUrl("/openapi.json")

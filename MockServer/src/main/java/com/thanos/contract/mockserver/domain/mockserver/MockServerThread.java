@@ -6,9 +6,7 @@ import com.google.common.io.CharStreams;
 import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
 import com.thanos.contract.mockserver.domain.mockserver.model.MessageService;
 import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
-import com.thanos.contract.mockserver.infrastructure.eventbus.EventBusFactory;
-import com.thanos.contract.mockserver.infrastructure.eventbus.NewMockMappingEvent;
-import com.thanos.contract.mockserver.infrastructure.eventbus.ShutdownMockEvent;
+import com.thanos.contract.mockserver.infrastructure.eventbus.*;
 import lombok.extern.slf4j.Slf4j;
 import org.jooq.lambda.Unchecked;
 
@@ -17,6 +15,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -32,6 +31,7 @@ public class MockServerThread implements Runnable {
     private ServerSocket ss;
     private List<Contract> contractList = new ArrayList<>();
     private List<Schema> schemaList = new ArrayList<>();
+
     private List<String> schemaNeeded = new ArrayList<>();
     private AsyncEventBus asyncEventBus;
 
@@ -44,15 +44,15 @@ public class MockServerThread implements Runnable {
         asyncEventBus = EventBusFactory.getInstance();
         asyncEventBus.register(this);
 
-        refreshLocalCache(index);
+        initLocalCache(index);
     }
 
-    private synchronized void refreshLocalCache(String index) {
-        reloadContracts(index);
-        reloadSchemas();
+    private synchronized void initLocalCache(String index) {
+        initContracts(index);
+        initSchemas();
     }
 
-    private void reloadSchemas() {
+    private void initSchemas() {
         if (!schemaNeeded.isEmpty()) {
             final List<Schema> schemaByIndex = mockServerService.getSchemaByIndex(schemaNeeded);
             if (!schemaByIndex.isEmpty()) {
@@ -62,7 +62,7 @@ public class MockServerThread implements Runnable {
         }
     }
 
-    private void reloadContracts(String index) {
+    private void initContracts(String index) {
         final List<Contract> contractByIndex = mockServerService.getContractByIndex(index);
         if (!contractByIndex.isEmpty()) {
             contractList = contractByIndex;
@@ -124,6 +124,34 @@ public class MockServerThread implements Runnable {
         if (this.index.equals(shutdownMockEvent.getIndex()) && this.port == shutdownMockEvent.getPort()) {
             log.info("Duplicate MockServer created, going to stop {}", shutdownMockEvent);
             stop();
+        }
+    }
+
+    @Subscribe
+    public void receiveContractUpdateEvent(ContractUpdateEvent contractUpdateEvent) {
+        if (index.equalsIgnoreCase(contractUpdateEvent.getIndex())) {
+
+            final Optional<Contract> matchedContract = contractList.stream()
+                    .filter(contract -> contract.getKey().equalsIgnoreCase(contractUpdateEvent.getKey()))
+                    .findFirst();
+
+            //existing contract and schema
+            if (matchedContract.isPresent() && schemaNeeded.contains(matchedContract.get().getSchemaIndex())) {
+                contractList.remove(matchedContract);
+                contractList.add(contractUpdateEvent);
+            } else {
+                initLocalCache(contractUpdateEvent.getIndex());
+            }
+        }
+    }
+
+    @Subscribe
+    public void receiveSchemaUpdateEvent(SchemaUpdateEvent schemaUpdateEvent) {
+        if (schemaNeeded.contains(schemaUpdateEvent.getIndex())) {
+            schemaList.removeIf(schema -> schema.getIndex().equalsIgnoreCase(schemaUpdateEvent.getIndex()));
+            schemaList.add(schemaUpdateEvent);
+            log.info("Schema [{}] updated in mockServer thread [{}]",
+                    schemaUpdateEvent.getIndex(), index);
         }
     }
 

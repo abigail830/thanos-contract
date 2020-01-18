@@ -27,6 +27,10 @@ public class Contract {
         return provider + '-' + consumer;
     }
 
+    public String getKey() {
+        return provider + '-' + consumer + '-' + version + '-' + name;
+    }
+
     public Integer getPriority() {
         return req.size();
     }

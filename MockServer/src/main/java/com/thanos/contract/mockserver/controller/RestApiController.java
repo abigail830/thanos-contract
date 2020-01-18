@@ -5,6 +5,9 @@ import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
 import com.thanos.contract.mockserver.domain.mockserver.MockServerService;
 import com.thanos.contract.mockserver.exception.BizException;
 import com.thanos.contract.mockserver.infrastructure.client.JsonUtil;
+import com.thanos.contract.mockserver.infrastructure.dto.ContractDTO;
+import com.thanos.contract.mockserver.infrastructure.dto.SchemaDTO;
+import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.ws.rs.*;
@@ -38,6 +41,30 @@ public class RestApiController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<MockMapping> getAllMockMapping() {
         return mockMappingService.getAllMockMapping();
+    }
+
+    @POST
+    @Path("/schemas")
+    public Response addOrUpdateSchema(SchemaDTO schemaDTO) {
+        if (PropertiesParser.isPlatformMode()) {
+            mockServerService.addOrUpdateSchema(schemaDTO.toSchema());
+            return Response.accepted().build();
+        } else {
+            return Response.status(Response.Status.METHOD_NOT_ALLOWED)
+                    .entity("This API only allowed in platform mode").build();
+        }
+    }
+
+    @POST
+    @Path("/contracts")
+    public Response addOrUpdateContracts(ContractDTO contractDTO) {
+        if (PropertiesParser.isPlatformMode()) {
+            mockServerService.addOrUpdateContract(contractDTO.toContract());
+            return Response.accepted().build();
+        } else {
+            return Response.status(Response.Status.METHOD_NOT_ALLOWED)
+                    .entity("This API only allowed in platform mode").build();
+        }
     }
 
 
