@@ -59,17 +59,23 @@ public class MockServerController {
         try {
             mockMappingService.addNewMockMapping(
                     new MockMapping(newMockMappingEvent.getIndex(), newMockMappingEvent.getPort()));
+            startedIndexs.add(newMockMappingEvent.getIndex());
 
         } catch (BizException ex) {
             asyncEventBus.post(
                     new ShutdownMockEvent(newMockMappingEvent.getIndex(), newMockMappingEvent.getPort()));
+            startedIndexs.remove(newMockMappingEvent.getIndex());
         }
     }
 
     @Subscribe
     public void receiveContractUpdateEvent(ContractUpdateEvent contractUpdateEvent) {
-        if (!startedIndexs.contains(contractUpdateEvent.getIndex())) {
-            createNewMockForIndex(contractUpdateEvent.getIndex());
+        if (!startedIndexs.contains(contractUpdateEvent.getContract().getIndex())) {
+            createNewMockForIndex(contractUpdateEvent.getContract().getIndex());
+            log.info("Going to startup new MockServer Thread [{}]", contractUpdateEvent.getContract().getIndex());
+        } else {
+            log.debug("MockServer Thread [{}] already exist. No new startup needed",
+                    contractUpdateEvent.getContract().getIndex());
         }
     }
 

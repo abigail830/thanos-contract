@@ -4,7 +4,9 @@ import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
 import com.thanos.contract.mockserver.domain.mockserver.model.Message;
 import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.exception.BizException;
+import com.thanos.contract.mockserver.infrastructure.eventbus.ContractUpdateEvent;
 import com.thanos.contract.mockserver.infrastructure.eventbus.EventBusFactory;
+import com.thanos.contract.mockserver.infrastructure.eventbus.SchemaUpdateEvent;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
@@ -64,10 +66,12 @@ public class MockServerService {
     }
 
     public void addOrUpdateSchema(Schema schema) {
-        EventBusFactory.getInstance().post(schema);
+        EventBusFactory.getInstance().post(new SchemaUpdateEvent(schema));
+        log.debug("SchemaUpdateEvent send [{}]", schema);
     }
 
     public void addOrUpdateContract(Contract contract) {
-        EventBusFactory.getInstance().post(contract);
+        EventBusFactory.getInstance().post(new ContractUpdateEvent(contract));
+        log.debug("ContractUpdateEvent send [{}]", contract);
     }
 }

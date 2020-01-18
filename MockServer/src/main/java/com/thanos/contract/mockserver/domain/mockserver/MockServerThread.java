@@ -129,29 +129,33 @@ public class MockServerThread implements Runnable {
 
     @Subscribe
     public void receiveContractUpdateEvent(ContractUpdateEvent contractUpdateEvent) {
-        if (index.equalsIgnoreCase(contractUpdateEvent.getIndex())) {
+        if (index.equalsIgnoreCase(contractUpdateEvent.getContract().getIndex())) {
 
             final Optional<Contract> matchedContract = contractList.stream()
-                    .filter(contract -> contract.getKey().equalsIgnoreCase(contractUpdateEvent.getKey()))
+                    .filter(contract -> contract.getKey().equalsIgnoreCase(contractUpdateEvent.getContract().getKey()))
                     .findFirst();
 
             //existing contract and schema
             if (matchedContract.isPresent() && schemaNeeded.contains(matchedContract.get().getSchemaIndex())) {
-                contractList.remove(matchedContract);
-                contractList.add(contractUpdateEvent);
+                contractList.remove(matchedContract.get());
+                contractList.add(contractUpdateEvent.getContract());
+                log.info("MockServer Thread [{}] updated locally", index);
             } else {
-                initLocalCache(contractUpdateEvent.getIndex());
+                initLocalCache(contractUpdateEvent.getContract().getIndex());
+                log.info("MockServer Thread [{}] reloaded with remote refresh", index);
             }
         }
     }
 
     @Subscribe
     public void receiveSchemaUpdateEvent(SchemaUpdateEvent schemaUpdateEvent) {
-        if (schemaNeeded.contains(schemaUpdateEvent.getIndex())) {
-            schemaList.removeIf(schema -> schema.getIndex().equalsIgnoreCase(schemaUpdateEvent.getIndex()));
-            schemaList.add(schemaUpdateEvent);
+        if (schemaNeeded.contains(schemaUpdateEvent.getSchema().getIndex())) {
+            schemaList.removeIf(schema -> schema.getIndex().equalsIgnoreCase(schemaUpdateEvent.getSchema().getIndex()));
+            schemaList.add(schemaUpdateEvent.getSchema());
             log.info("Schema [{}] updated in mockServer thread [{}]",
-                    schemaUpdateEvent.getIndex(), index);
+                    schemaUpdateEvent.getSchema().getIndex(), index);
+        } else {
+            log.debug("MockServer Thread [{}] not need to reload for SchemaUpdateEvent", index);
         }
     }
 
