@@ -128,7 +128,7 @@ public class ContractFieldDTO {
 ### MockServer 挡板服务
 Detail please reference: [README](MockServer/README.md)
 * [x] STANDALONE模式：能根据路径内的契约文件自动生成对应的挡板服务
-* [ ] PLATFORM模式：能从ContractService中获取最新契约及更新，动态维护挡板服务
+* [x] PLATFORM模式：能从ContractService中获取最新契约及更新，动态维护挡板服务
 
 ### CodeGenerator 代码生成引擎
 * [ ] STANDALONE模式：根据指定路径契约文件自动生成对应的生产者测试案例，可按需复制黏贴到项目工程代码中
