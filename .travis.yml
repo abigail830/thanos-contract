@@ -13,3 +13,9 @@ matrix:
     jdk: openjdk8
     language: java
     script: "mvn clean package"
+  -
+    before_script:
+    - "cd codegenerator"
+    jdk: openjdk8
+    language: java
+    script: "mvn clean package"
