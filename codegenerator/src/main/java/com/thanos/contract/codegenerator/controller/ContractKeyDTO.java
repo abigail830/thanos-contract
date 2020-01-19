@@ -1,10 +1,11 @@
 package com.thanos.contract.codegenerator.controller;
 
-import com.google.common.base.Strings;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 @Getter
 @ToString
@@ -22,10 +23,10 @@ public class ContractKeyDTO {
     }
 
     public Boolean isValid() {
-        if (Strings.isNullOrEmpty(provider)) return false;
-        if (Strings.isNullOrEmpty(consumer)) return false;
-        if (Strings.isNullOrEmpty(name)) return false;
-        if (Strings.isNullOrEmpty(version)) return false;
+        if (isNullOrEmpty(provider) || isNullOrEmpty(consumer) ||
+                isNullOrEmpty(name) || isNullOrEmpty(version)) {
+            return false;
+        }
 
         return true;
     }
