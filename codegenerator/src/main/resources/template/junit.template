@@ -1,0 +1,51 @@
+import org.junit.Test;
+import org.junit.Before;
+import java.io.*;
+import java.net.Socket;
+import static org.junit.Assert.assertTrue;
+
+
+public class {{className}}Test {
+
+    private static final String HOST = {{host}};
+    private static final Integer PORT = {{port}};
+
+    @Before
+    public void setup() throws Exception {
+        //Please startup the TCP service here
+    }
+
+    @Test
+    public void test_consumer1_schema1() throws Exception {
+        // Given
+        String request = {{request}};
+        // When
+        String response = raiseRequest(request);
+        // Then
+        {{#plainTextValidation}}
+        {{.}}
+        {{/plainTextValidation}}
+
+        {{#regexValidation}}
+        {{.}}
+        {{/regexValidation}}
+    }
+
+    private String raiseRequest(String request) throws IOException {
+
+        Socket socket = new Socket(HOST, PORT);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        bw.write(request);
+        bw.flush();
+        socket.shutdownOutput();
+
+        //读取服务器返回的消息
+        BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        String response = br.readLine();
+        System.out.println("ProviderMain responsed：" + response);
+        socket.close();
+
+        return response;
+    }
+
+}
