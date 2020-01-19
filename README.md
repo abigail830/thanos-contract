@@ -4,6 +4,7 @@
 [![Jitpack Statuc](https://jitpack.io/v/abigail830/thanoscontract.svg)](https://jitpack.io/#abigail830/thanoscontract)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9a15dac7b088a848522f/maintainability)](https://codeclimate.com/github/abigail830/ThanosContract/maintainability)
 [![codecov](https://codecov.io/gh/abigail830/ThanosContract/branch/master/graph/badge.svg)](https://codecov.io/gh/abigail830/ThanosContract)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fabigail830%2FThanosContract.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fabigail830%2FThanosContract?ref=badge_shield)
 
 # Vision 愿景
 
