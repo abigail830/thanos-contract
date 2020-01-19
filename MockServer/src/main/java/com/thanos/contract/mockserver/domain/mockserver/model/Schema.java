@@ -1,6 +1,5 @@
 package com.thanos.contract.mockserver.domain.mockserver.model;
 
-import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 import com.thanos.contract.mockserver.exception.BizException;
 import lombok.AllArgsConstructor;
@@ -10,6 +9,8 @@ import lombok.ToString;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 @Getter
 @ToString
@@ -50,14 +51,12 @@ public class Schema {
     }
 
     public Boolean isValid() {
-        if (Strings.isNullOrEmpty(provider) ||
-                Strings.isNullOrEmpty(name) ||
-                Strings.isNullOrEmpty(version) ||
-                request.size() == 0 ||
-                response.size() == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        if (isNullOrEmpty(provider)) return false;
+        if (isNullOrEmpty(name)) return false;
+        if (isNullOrEmpty(version)) return false;
+        if (request.size() == 0) return false;
+        if (response.size() == 0) return false;
+
+        return true;
     }
 }

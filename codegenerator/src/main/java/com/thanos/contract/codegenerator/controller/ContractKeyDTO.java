@@ -22,11 +22,11 @@ public class ContractKeyDTO {
     }
 
     public Boolean isValid() {
-        if (Strings.isNullOrEmpty(provider) || Strings.isNullOrEmpty(consumer) ||
-                Strings.isNullOrEmpty(name) || Strings.isNullOrEmpty(version)) {
-            return false;
-        }
-        return true;
+        if (Strings.isNullOrEmpty(provider)) return false;
+        if (Strings.isNullOrEmpty(consumer)) return false;
+        if (Strings.isNullOrEmpty(name)) return false;
+        if (Strings.isNullOrEmpty(version)) return false;
 
+        return true;
     }
 }

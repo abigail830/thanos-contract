@@ -1,6 +1,5 @@
 package com.thanos.contract.mockserver.domain.mockserver.model;
 
-import com.google.common.base.Strings;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +7,8 @@ import lombok.ToString;
 
 import java.util.LinkedList;
 import java.util.Optional;
+
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 @Getter
 @ToString
@@ -53,16 +54,14 @@ public class Contract {
     }
 
     public Boolean isValid() {
-        if (Strings.isNullOrEmpty(provider) ||
-                Strings.isNullOrEmpty(consumer) ||
-                Strings.isNullOrEmpty(name) ||
-                Strings.isNullOrEmpty(version) ||
-                Strings.isNullOrEmpty(schemaIndex) ||
-                req.size() == 0 ||
-                res.size() == 0) {
-            return false;
-        } else {
-            return true;
-        }
+        if (isNullOrEmpty(provider)) return false;
+        if (isNullOrEmpty(consumer)) return false;
+        if (isNullOrEmpty(name)) return false;
+        if (isNullOrEmpty(version)) return false;
+        if (isNullOrEmpty(schemaIndex)) return false;
+        if (req.size() == 0) return false;
+        if (res.size() == 0) return false;
+
+        return true;
     }
 }
