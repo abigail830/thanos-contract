@@ -50,7 +50,7 @@ public class TemplateParserTest {
                 Arrays.asList("assertTrue(true);", "assertFalse(false);"));
 
         final TemplateParser templateParser = new TemplateParser();
-        templateParser.parseJunitTemplateToFile(junitTemplateFields, targetFile);
+        templateParser.parseJunitTemplateToFile(junitTemplateFields, "target/generated-test-sources");
 
         final String result = new String(Files.readAllBytes(Paths.get(targetFile)));
         assertTrue(result.contains("DemoTest"));
