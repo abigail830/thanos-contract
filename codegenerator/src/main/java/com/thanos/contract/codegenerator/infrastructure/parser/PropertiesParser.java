@@ -23,8 +23,8 @@ public class PropertiesParser {
         return new Boolean(prop.getProperty("platformMode"));
     }
 
-    public static String getContractServiceBaseHttpPath() {
-        return prop.getProperty("contractService.baseHttpPath");
+    public static String getJunitBasePath() {
+        return prop.getProperty("junit.basePath");
     }
 
     public void init() throws IOException {

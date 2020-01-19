@@ -29,4 +29,16 @@ public class RestApiController {
         }
     }
 
+    @POST
+    @Path("/generate/file")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void generateToFile(ContractKeyDTO contractKeyDTO) {
+        if (contractKeyDTO.isValid()) {
+            codeGeneratorService.generateJunitToFile(contractKeyDTO.toContractKey(),
+                    contractKeyDTO.getHost(), contractKeyDTO.getPort());
+        } else {
+            throw new BizException("Invalid input parameter");
+        }
+    }
+
 }

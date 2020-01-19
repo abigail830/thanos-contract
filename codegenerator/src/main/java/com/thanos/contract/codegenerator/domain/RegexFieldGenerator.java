@@ -8,6 +8,8 @@ public class RegexFieldGenerator implements Generator {
     private Integer startIndex;
     private Integer length;
 
+    public static final String NAME = "regex";
+
     public RegexFieldGenerator(String content, Integer startIndex, Integer length) {
         this.content = content;
         this.startIndex = startIndex;

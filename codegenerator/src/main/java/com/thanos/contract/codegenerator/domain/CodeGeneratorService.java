@@ -5,6 +5,7 @@ import com.thanos.contract.codegenerator.domain.model.CombinedContext;
 import com.thanos.contract.codegenerator.domain.model.CombinedField;
 import com.thanos.contract.codegenerator.domain.model.JunitTemplateFields;
 import com.thanos.contract.codegenerator.exception.BizException;
+import com.thanos.contract.codegenerator.infrastructure.parser.PropertiesParser;
 import com.thanos.contract.codegenerator.infrastructure.parser.TemplateParser;
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,6 +23,21 @@ public class CodeGeneratorService {
     public CodeGeneratorService(FileBaseRepository fileBaseRepository) {
         this.fileBaseRepository = fileBaseRepository;
         this.templateParser = new TemplateParser();
+    }
+
+    public void generateJunitToFile(String contractKey, String host, Integer port) {
+        generateJunitToFile(contractKey, host, port, PropertiesParser.getJunitBasePath());
+    }
+
+    public void generateJunitToFile(String contractKey, String host, Integer port, String basePath) {
+        final CombinedContext combinedContext = fileBaseRepository.getCombinedContextByContractKey(contractKey);
+
+        JunitTemplateFields fields = generateTemplateFields(combinedContext, host, port);
+        try {
+            templateParser.parseJunitTemplateToFile(fields, basePath);
+        } catch (IOException e) {
+            throw new BizException("IOException when parse junit template", e);
+        }
     }
 
     public String generateJunit(String contractKey, String host, Integer port) {

@@ -3,23 +3,21 @@ import org.junit.Before;
 import org.junit.Assert;
 import java.io.*;
 import java.net.Socket;
-import static org.junit.Assert.assertTrue;
-
 
 public class {{className}}Test {
 
-    private static final String HOST = {{host}};
+    private static final String HOST = "{{host}}";
     private static final Integer PORT = {{port}};
 
     @Before
     public void setup() throws Exception {
-        //Please startup the TCP service here
+        // TODO: Please startup the TCP service here
     }
 
     @Test
     public void {{testMethod}}() throws Exception {
         // Given
-        String request = {{request}};
+        String request = "{{request}}";
         // When
         String response = raiseRequest(request);
         // Then
@@ -36,7 +34,7 @@ public class {{className}}Test {
         bw.flush();
         socket.shutdownOutput();
 
-        //读取服务器返回的消息
+        //Read the return message
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String response = br.readLine();
         System.out.println("Response result ：" + response);
