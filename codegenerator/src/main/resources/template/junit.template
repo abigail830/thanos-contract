@@ -16,7 +16,7 @@ public class {{className}}Test {
     }
 
     @Test
-    public void test_consumer1_schema1() throws Exception {
+    public void {{testMethod}}() throws Exception {
         // Given
         String request = {{request}};
         // When
@@ -42,7 +42,7 @@ public class {{className}}Test {
         //读取服务器返回的消息
         BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String response = br.readLine();
-        System.out.println("ProviderMain responsed：" + response);
+        System.out.println("Response result ：" + response);
         socket.close();
 
         return response;
