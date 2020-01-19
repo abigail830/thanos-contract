@@ -3,6 +3,8 @@ package com.thanos.contract.mockserver.controller;
 import com.thanos.contract.mockserver.domain.mapping.MockMapping;
 import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
 import com.thanos.contract.mockserver.domain.mockserver.MockServerService;
+import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
+import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.exception.BizException;
 import com.thanos.contract.mockserver.infrastructure.client.JsonUtil;
 import com.thanos.contract.mockserver.infrastructure.dto.ContractDTO;
@@ -15,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 @Slf4j
 @Path("/apis")
@@ -46,26 +49,21 @@ public class RestApiController {
     @POST
     @Path("/schemas")
     public Response addOrUpdateSchema(SchemaDTO schemaDTO) {
-        try {
-            if (PropertiesParser.isPlatformMode()) {
-                mockServerService.addOrUpdateSchema(schemaDTO.toSchema());
-                return Response.accepted().build();
-            } else {
-                return Response.status(Response.Status.METHOD_NOT_ALLOWED)
-                        .entity("This API only allowed in platform mode").build();
-            }
-        } catch (BizException ex) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
-        }
-
+        return platformModeOnly(schemaDTO.toSchema(),
+                c -> mockServerService.addOrUpdateSchema((Schema) c));
     }
 
     @POST
     @Path("/contracts")
     public Response addOrUpdateContracts(ContractDTO contractDTO) {
+        return platformModeOnly(contractDTO.toContract(),
+                c -> mockServerService.addOrUpdateContract((Contract) c));
+    }
+
+    Response platformModeOnly(Object obj, Consumer<Object> consumer) {
         try {
             if (PropertiesParser.isPlatformMode()) {
-                mockServerService.addOrUpdateContract(contractDTO.toContract());
+                consumer.accept(obj);
                 return Response.accepted().build();
             } else {
                 return Response.status(Response.Status.METHOD_NOT_ALLOWED)
@@ -74,7 +72,6 @@ public class RestApiController {
         } catch (BizException ex) {
             return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
         }
-
     }
 
 
