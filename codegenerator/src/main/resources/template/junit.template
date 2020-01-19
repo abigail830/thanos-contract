@@ -1,5 +1,6 @@
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.Assert;
 import java.io.*;
 import java.net.Socket;
 import static org.junit.Assert.assertTrue;
@@ -22,13 +23,9 @@ public class {{className}}Test {
         // When
         String response = raiseRequest(request);
         // Then
-        {{#plainTextValidation}}
+        {{#fieldValidation}}
         {{.}}
-        {{/plainTextValidation}}
-
-        {{#regexValidation}}
-        {{.}}
-        {{/regexValidation}}
+        {{/fieldValidation}}
     }
 
     private String raiseRequest(String request) throws IOException {

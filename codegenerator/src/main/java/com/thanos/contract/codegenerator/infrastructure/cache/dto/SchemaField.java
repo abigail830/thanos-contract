@@ -1,7 +1,5 @@
-package com.thanos.contract.codegenerator.domain.model;
+package com.thanos.contract.codegenerator.infrastructure.cache.dto;
 
-import com.thanos.contract.codegenerator.domain.Generator;
-import com.thanos.contract.codegenerator.domain.GeneratorFactory;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,14 +10,14 @@ public class SchemaField {
     String type;
     Integer length;
     String content;
-    Generator generator;
+    Integer startIndex;
 
-    public SchemaField(String name, String type, Integer length, String content) {
+    public SchemaField(String name, String type, Integer length, String content, Integer startIndex) {
         this.name = name;
         this.type = type;
         this.length = length;
         this.content = content;
-        this.generator = new GeneratorFactory().getGenerator(content);
+        this.startIndex = startIndex;
     }
 
     @Override
@@ -27,6 +25,7 @@ public class SchemaField {
         return "SchemaField{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
+                ", startIndex=" + startIndex +
                 ", length=" + length +
                 ", content='" + content + '\'' +
                 '}';

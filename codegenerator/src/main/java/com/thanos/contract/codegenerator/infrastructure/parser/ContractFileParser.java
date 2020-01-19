@@ -1,8 +1,8 @@
 package com.thanos.contract.codegenerator.infrastructure.parser;
 
-import com.thanos.contract.codegenerator.domain.model.Contract;
 import com.thanos.contract.codegenerator.exception.InfraException;
-import com.thanos.contract.codegenerator.infrastructure.dto.ContractFileDTO;
+import com.thanos.contract.codegenerator.infrastructure.cache.dto.Contract;
+import com.thanos.contract.codegenerator.infrastructure.parser.dto.ContractFileDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;

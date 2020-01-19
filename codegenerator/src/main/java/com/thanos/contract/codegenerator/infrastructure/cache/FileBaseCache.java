@@ -1,7 +1,7 @@
 package com.thanos.contract.codegenerator.infrastructure.cache;
 
-import com.thanos.contract.codegenerator.domain.model.Contract;
-import com.thanos.contract.codegenerator.domain.model.Schema;
+import com.thanos.contract.codegenerator.infrastructure.cache.dto.Contract;
+import com.thanos.contract.codegenerator.infrastructure.cache.dto.Schema;
 import com.thanos.contract.codegenerator.infrastructure.parser.ContractFileParser;
 import com.thanos.contract.codegenerator.infrastructure.parser.SchemaFileParser;
 import lombok.extern.slf4j.Slf4j;

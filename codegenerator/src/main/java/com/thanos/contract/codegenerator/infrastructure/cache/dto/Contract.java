@@ -1,4 +1,4 @@
-package com.thanos.contract.codegenerator.domain.model;
+package com.thanos.contract.codegenerator.infrastructure.cache.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

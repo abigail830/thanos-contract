@@ -22,7 +22,8 @@ public class RestApiController {
     @Produces(MediaType.APPLICATION_JSON)
     public String generate(ContractKeyDTO contractKeyDTO) {
         if (contractKeyDTO.isValid()) {
-            return codeGeneratorService.generate(contractKeyDTO.toContractKey());
+            return codeGeneratorService.generateJunit(contractKeyDTO.toContractKey(),
+                    contractKeyDTO.getHost(), contractKeyDTO.getPort());
         } else {
             throw new BizException("Invalid input parameter");
         }

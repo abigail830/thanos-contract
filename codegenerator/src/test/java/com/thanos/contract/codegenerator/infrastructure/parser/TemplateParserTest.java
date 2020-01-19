@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.Assert.assertFalse;
@@ -27,7 +26,7 @@ public class TemplateParserTest {
 
         final JunitTemplateFields junitTemplateFields = new JunitTemplateFields("Demo", "should_do_sth_when_condition_fulfills",
                 "request", "127.0.0.1", 12345,
-                Arrays.asList("assertTrue(true);", "assertFalse(false);"), new ArrayList<>());
+                Arrays.asList("assertTrue(true);", "assertFalse(false);"));
 
         final TemplateParser templateParser = new TemplateParser();
         final String result = templateParser.parseJunitTemplateToString(junitTemplateFields);
@@ -48,7 +47,7 @@ public class TemplateParserTest {
 
         final JunitTemplateFields junitTemplateFields = new JunitTemplateFields("Demo", "should_do_sth_when_condition_fulfills",
                 "request", "127.0.0.1", 12345,
-                Arrays.asList("assertTrue(true);", "assertFalse(false);"), new ArrayList<>());
+                Arrays.asList("assertTrue(true);", "assertFalse(false);"));
 
         final TemplateParser templateParser = new TemplateParser();
         templateParser.parseJunitTemplateToFile(junitTemplateFields, targetFile);

@@ -1,7 +1,7 @@
-package com.thanos.contract.codegenerator.infrastructure.dto;
+package com.thanos.contract.codegenerator.infrastructure.parser.dto;
 
-import com.thanos.contract.codegenerator.domain.model.Contract;
-import com.thanos.contract.codegenerator.domain.model.ContractField;
+import com.thanos.contract.codegenerator.infrastructure.cache.dto.Contract;
+import com.thanos.contract.codegenerator.infrastructure.cache.dto.ContractField;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

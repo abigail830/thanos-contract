@@ -18,6 +18,5 @@ public class JunitTemplateFields {
     String request;
     String host;
     Integer port;
-    List<String> plainTextValidation;
-    List<String> regexValidation;
+    List<String> fieldValidation;
 }

@@ -17,17 +17,20 @@ public class ContractKeyDTO {
     private String consumer;
     private String name;
     private String version;
+    private String host;
+    private Integer port;
 
     public String toContractKey() {
         return provider + '-' + consumer + '-' + version + '-' + name;
     }
 
     public Boolean isValid() {
-        if (isNullOrEmpty(provider) || isNullOrEmpty(consumer) ||
-                isNullOrEmpty(name) || isNullOrEmpty(version)) {
+        if (isNullOrEmpty(provider) || isNullOrEmpty(consumer) || isNullOrEmpty(name) || isNullOrEmpty(version)) {
             return false;
         }
-
+        if (isNullOrEmpty(host) || port == null) {
+            return false;
+        }
         return true;
     }
 }
