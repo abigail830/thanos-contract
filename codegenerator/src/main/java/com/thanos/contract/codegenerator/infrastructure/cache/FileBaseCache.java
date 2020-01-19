@@ -35,28 +35,15 @@ public class FileBaseCache {
         return Optional.ofNullable(schema);
     }
 
-    static List<String> getAllContractPaths() {
-        final URL resource = FileBaseCache.class.getClassLoader().getResource(CONTRACTS_PATH);
+    static List<String> getPaths(String path) {
+        final URL resource = FileBaseCache.class.getClassLoader().getResource(path);
         try {
             return Files.walk(Paths.get(resource.getPath()))
                     .filter(Files::isRegularFile)
                     .map(Path::toString)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            log.warn("Fail to getAllContractPaths");
-            return Collections.EMPTY_LIST;
-        }
-    }
-
-    static List<String> getAllSchemaPaths() {
-        final URL resource = FileBaseCache.class.getClassLoader().getResource(SCHEMAS_PATH);
-        try {
-            return Files.walk(Paths.get(resource.getPath()))
-                    .filter(Files::isRegularFile)
-                    .map(Path::toString)
-                    .collect(Collectors.toList());
-        } catch (IOException e) {
-            log.warn("Fail to getAllContractPaths");
+            log.warn("Fail to get paths");
             return Collections.EMPTY_LIST;
         }
     }
@@ -67,7 +54,7 @@ public class FileBaseCache {
     }
 
     void initContractMap() {
-        final List<String> contractPaths = getAllContractPaths();
+        final List<String> contractPaths = getPaths(CONTRACTS_PATH);
         final ContractFileParser contractParser = new ContractFileParser();
 
         contractPaths.stream().map(contractParser::parse).flatMap(Collection::stream)
@@ -75,7 +62,7 @@ public class FileBaseCache {
     }
 
     void initSchemaMap() {
-        final List<String> schemaPaths = getAllSchemaPaths();
+        final List<String> schemaPaths = getPaths(SCHEMAS_PATH);
         final SchemaFileParser schemaParser = new SchemaFileParser();
         schemaPaths.stream().map(schemaParser::parse).flatMap(Collection::stream)
                 .forEach(schema -> schemasMap.put(schema.getIndex(), schema));
