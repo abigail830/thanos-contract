@@ -54,13 +54,11 @@ public class Contract {
     }
 
     public Boolean isValid() {
-        if (isNullOrEmpty(provider)) return false;
-        if (isNullOrEmpty(consumer)) return false;
-        if (isNullOrEmpty(name)) return false;
-        if (isNullOrEmpty(version)) return false;
-        if (isNullOrEmpty(schemaIndex)) return false;
-        if (req.size() == 0) return false;
-        if (res.size() == 0) return false;
+        if (isNullOrEmpty(provider) || isNullOrEmpty(consumer)) return false;
+
+        if (isNullOrEmpty(name) || isNullOrEmpty(version) || isNullOrEmpty(schemaIndex)) return false;
+
+        if (req.size() == 0 || res.size() == 0) return false;
 
         return true;
     }
