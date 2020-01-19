@@ -1,8 +1,5 @@
 ---
 
-env:
-  - CODECOV_TOKEN="ad723cb3-3c21-446c-9630-3c3cf4410b7f"
-
 matrix:
   include:
   -

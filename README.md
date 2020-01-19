@@ -2,6 +2,8 @@
 
 [![Travis Build Status](https://travis-ci.org/abigail830/ThanosContract.svg?branch=master)](https://travis-ci.org/abigail830/ThanosContract)
 [![Jitpack Statuc](https://jitpack.io/v/abigail830/thanoscontract.svg)](https://jitpack.io/#abigail830/thanoscontract)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9a15dac7b088a848522f/maintainability)](https://codeclimate.com/github/abigail830/ThanosContract/maintainability)
+[![codecov](https://codecov.io/gh/abigail830/ThanosContract/branch/master/graph/badge.svg)](https://codecov.io/gh/abigail830/ThanosContract)
 
 # Vision 愿景
 
