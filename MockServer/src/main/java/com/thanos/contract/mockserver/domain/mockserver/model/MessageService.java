@@ -23,21 +23,19 @@ public class MessageService {
 
     public String process(String inputRequest) {
         final Optional<Message> message = parseAndValidateMsg(inputRequest);
+        if (!message.isPresent()) return MISMATCH_RESPONSE;
 
-        if (message.isPresent()) {
-            Message msg = message.get();
+        Message msg = message.get();
+        final List<Contract> matchedContracts = contractList.stream()
+                .filter(contract -> contract.matchSchemaIndex(msg.getMatchedSchema().getIndex()))
+                .sorted(Comparator.comparingInt(Contract::getPriority).reversed())
+                .collect(Collectors.toList());
 
-            final List<Contract> matchedContracts = contractList.stream()
-                    .filter(contract -> contract.matchSchemaIndex(msg.getMatchedSchema().getIndex()))
-                    .sorted(Comparator.comparingInt(Contract::getPriority).reversed())
-                    .collect(Collectors.toList());
-
-            for (Contract contract : matchedContracts) {
-                if (msg.matchContract(contract)) {
-                    final String result = msg.buildResponse(contract);
-                    log.info("Incoming msg [{}] matched, responding [{}]", msg, result);
-                    return result;
-                }
+        for (Contract contract : matchedContracts) {
+            if (msg.matchContract(contract)) {
+                final String result = msg.buildResponse(contract);
+                log.info("Incoming msg [{}] matched, responding [{}]", msg, result);
+                return result;
             }
         }
         return MISMATCH_RESPONSE;
