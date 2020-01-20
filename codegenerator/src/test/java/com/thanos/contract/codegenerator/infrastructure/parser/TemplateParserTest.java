@@ -32,8 +32,6 @@ public class TemplateParserTest {
         System.out.println(result);
         assertTrue(result.contains("DemoTest"));
         assertTrue(result.contains("should_do_sth_when_condition_fulfills()"));
-        assertTrue(result.contains("127.0.0.1"));
-        assertTrue(result.contains("12345"));
         assertTrue(result.contains("assertTrue(true);"));
         assertTrue(result.contains("assertFalse(false);"));
         assertFalse(result.contains("{{"));
@@ -53,8 +51,6 @@ public class TemplateParserTest {
         final String result = new String(Files.readAllBytes(Paths.get(targetFile)));
         assertTrue(result.contains("DemoTest"));
         assertTrue(result.contains("should_do_sth_when_condition_fulfills()"));
-        assertTrue(result.contains("127.0.0.1"));
-        assertTrue(result.contains("12345"));
         assertTrue(result.contains("assertTrue(true);"));
         assertTrue(result.contains("assertFalse(false);"));
 
