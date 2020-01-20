@@ -90,6 +90,7 @@ public class SchemaFieldDTO {
 ``` yaml
 name: 'contract1'
 consumer: 'consumer1'
+provider: 'provider'
 version: 'v2'
 schema:
   name: 'schema1'
