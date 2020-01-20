@@ -18,6 +18,7 @@ public class ContractFileDTO {
     String name;
     String version;
     String consumer;
+    String provider;
     Map<String, String> schema;
     LinkedHashMap<String, String> req;
     LinkedHashMap<String, String> res;
@@ -36,8 +37,7 @@ public class ContractFileDTO {
         LinkedList<ContractField> request = buildContractFieldList(req);
         LinkedList<ContractField> response = buildContractFieldList(res);
         String schemaIndex = schema.get("provider") + "-" + schema.get("name") + "-" + schema.get("version");
-        return new Contract(name, version, schemaIndex, consumer,
-                schema.get("provider"), request, response);
+        return new Contract(name, version, schemaIndex, consumer, provider, request, response);
     }
 
     LinkedList<ContractField> buildContractFieldList(LinkedHashMap<String, String> originDtoMap) {
