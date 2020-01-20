@@ -15,7 +15,8 @@ public class CodeGeneratorServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        Files.deleteIfExists(Paths.get("target/generated-test-sources/Consummer1ProviderTest.java"));
+        Files.deleteIfExists(Paths.get("target/generated-test-sources/Consumer1ProviderTest.java"));
+        Files.deleteIfExists(Paths.get("target/generated-test-sources/Consumer2ProviderTest.java"));
     }
 
     private CodeGeneratorService codeGeneratorService;
@@ -29,7 +30,7 @@ public class CodeGeneratorServiceTest {
     }
 
     @Test
-    public void generateJunit() {
+    public void generateJunit_schema1() {
         String contractKey = "provider" + '-' + "consumer1" + '-' + "v2" + '-' + "test_case_1";
         final String result = codeGeneratorService.generateJunit(contractKey);
         System.out.println(result);
@@ -39,10 +40,17 @@ public class CodeGeneratorServiceTest {
     }
 
     @Test
+    public void generateJunit_schema2() {
+        String contractKey = "provider" + '-' + "consumer2" + '-' + "v1" + '-' + "test_case_2";
+        codeGeneratorService.generateJunitToFile(contractKey, "target/generated-test-sources");
+        assertTrue(Files.exists(Paths.get("target/generated-test-sources/Consumer2ProviderTest.java")));
+    }
+
+    @Test
     public void generateJunitToFile() {
         String contractKey = "provider" + '-' + "consumer1" + '-' + "v2" + '-' + "test_case_1";
         codeGeneratorService.generateJunitToFile(contractKey, "target/generated-test-sources");
-
+        assertTrue(Files.exists(Paths.get("target/generated-test-sources/Consumer1ProviderTest.java")));
 
     }
 }

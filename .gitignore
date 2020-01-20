@@ -1,4 +1,10 @@
+
 *.iml
 **/target/*
+
 .idea/
+**/.idea/
+
+**/.git/
+.git/
 

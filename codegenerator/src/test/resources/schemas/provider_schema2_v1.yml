@@ -31,4 +31,12 @@ response:
   type: CHAR
   length: 10
   content: 'regex([a-zA-Z0-9]{10})'
+- name: MODE
+  type: CHAR
+  length: 1
+  content: 'regex(A|B)'
+- name: FLAG
+  type: NUM
+  length: 2
+  content: 'regex(\d{2})'
 
