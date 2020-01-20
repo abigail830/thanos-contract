@@ -1,5 +1,6 @@
 name: 'test_case_1'
 consumer: 'consumer2'
+provider: 'provider'
 version: 'v1'
 schema:
   name: 'schema1'
