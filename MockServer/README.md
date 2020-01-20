@@ -1,4 +1,4 @@
-# MockServer
+# Thanos MockServer
 
 ## How to use
 
