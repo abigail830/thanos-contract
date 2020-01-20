@@ -13,7 +13,7 @@
 
 ## Functions
 * [x] 为所指定的契约生成Junit测试案例。Generate Junit sample code for specified contract
-
+* [ ] 为所指定的契约生成接口测试案例。Generate Interface test sample code for specified contract
 
 ## Sample Junit
 
