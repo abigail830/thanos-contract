@@ -25,8 +25,7 @@ public class TemplateParserTest {
     public void parse_to_string() throws IOException {
 
         final JunitTemplateFields junitTemplateFields = new JunitTemplateFields("Demo", "should_do_sth_when_condition_fulfills",
-                "request", "127.0.0.1", 12345,
-                Arrays.asList("assertTrue(true);", "assertFalse(false);"));
+                "request", Arrays.asList("assertTrue(true);", "assertFalse(false);"));
 
         final TemplateParser templateParser = new TemplateParser();
         final String result = templateParser.parseJunitTemplateToString(junitTemplateFields);
@@ -46,8 +45,7 @@ public class TemplateParserTest {
     public void parse_to_file() throws IOException {
 
         final JunitTemplateFields junitTemplateFields = new JunitTemplateFields("Demo", "should_do_sth_when_condition_fulfills",
-                "request", "127.0.0.1", 12345,
-                Arrays.asList("assertTrue(true);", "assertFalse(false);"));
+                "request", Arrays.asList("assertTrue(true);", "assertFalse(false);"));
 
         final TemplateParser templateParser = new TemplateParser();
         templateParser.parseJunitTemplateToFile(junitTemplateFields, "target/generated-test-sources");

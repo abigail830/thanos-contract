@@ -6,8 +6,10 @@ import java.net.Socket;
 
 public class {{className}}Test {
 
-    private static final String HOST = "{{host}}";
-    private static final Integer PORT = {{port}};
+    // TODO: Please update to suitable port
+    private static final Integer PORT = 54321;
+    private static final String HOST = "127.0.0.1";
+
 
     @Before
     public void setup() throws Exception {

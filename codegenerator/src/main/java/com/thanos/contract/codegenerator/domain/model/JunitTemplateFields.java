@@ -16,7 +16,5 @@ public class JunitTemplateFields {
     String className;
     String testMethod;
     String request;
-    String host;
-    Integer port;
     List<String> fieldValidation;
 }

@@ -25,14 +25,14 @@ public class CodeGeneratorService {
         this.templateParser = new TemplateParser();
     }
 
-    public void generateJunitToFile(String contractKey, String host, Integer port) {
-        generateJunitToFile(contractKey, host, port, PropertiesParser.getJunitBasePath());
+    public void generateJunitToFile(String contractKey) {
+        generateJunitToFile(contractKey, PropertiesParser.getJunitBasePath());
     }
 
-    public void generateJunitToFile(String contractKey, String host, Integer port, String basePath) {
+    public void generateJunitToFile(String contractKey, String basePath) {
         final CombinedContext combinedContext = fileBaseRepository.getCombinedContextByContractKey(contractKey);
 
-        JunitTemplateFields fields = generateTemplateFields(combinedContext, host, port);
+        JunitTemplateFields fields = generateTemplateFields(combinedContext);
         try {
             templateParser.parseJunitTemplateToFile(fields, basePath);
         } catch (IOException e) {
@@ -40,11 +40,11 @@ public class CodeGeneratorService {
         }
     }
 
-    public String generateJunit(String contractKey, String host, Integer port) {
+    public String generateJunit(String contractKey) {
 
         final CombinedContext combinedContext = fileBaseRepository.getCombinedContextByContractKey(contractKey);
 
-        JunitTemplateFields fields = generateTemplateFields(combinedContext, host, port);
+        JunitTemplateFields fields = generateTemplateFields(combinedContext);
         try {
             return templateParser.parseJunitTemplateToString(fields);
         } catch (IOException e) {
@@ -53,7 +53,7 @@ public class CodeGeneratorService {
 
     }
 
-    private JunitTemplateFields generateTemplateFields(CombinedContext combinedContext, String host, Integer port) {
+    private JunitTemplateFields generateTemplateFields(CombinedContext combinedContext) {
 
         String className = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, combinedContext.getConsumer()) +
                 CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, combinedContext.getProvider());
@@ -64,7 +64,7 @@ public class CodeGeneratorService {
 
         List<String> validations = generateFieldValidation(combinedContext.getResponse());
 
-        return new JunitTemplateFields(className, methodName, request, host, port, validations);
+        return new JunitTemplateFields(className, methodName, request, validations);
     }
 
     private List<String> generateFieldValidation(LinkedList<CombinedField> response) {

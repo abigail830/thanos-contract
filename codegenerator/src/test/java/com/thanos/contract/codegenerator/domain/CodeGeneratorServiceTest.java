@@ -31,7 +31,7 @@ public class CodeGeneratorServiceTest {
     @Test
     public void generateJunit() {
         String contractKey = "provider" + '-' + "consumer1" + '-' + "v2" + '-' + "test_case_1";
-        final String result = codeGeneratorService.generateJunit(contractKey, "127.0.0.1", 12345);
+        final String result = codeGeneratorService.generateJunit(contractKey);
         System.out.println(result);
         assertTrue(result.contains("Assert.assertEquals(\"This is the expected memo for choice 1  \", response.substring(10, 50));"));
         assertTrue(result.contains("Assert.assertEquals(\"SUPPLEMENT\", response.substring(0, 10));"));
@@ -41,7 +41,7 @@ public class CodeGeneratorServiceTest {
     @Test
     public void generateJunitToFile() {
         String contractKey = "provider" + '-' + "consumer1" + '-' + "v2" + '-' + "test_case_1";
-        codeGeneratorService.generateJunitToFile(contractKey, "127.0.0.1", 12345, "target/generated-test-sources");
+        codeGeneratorService.generateJunitToFile(contractKey, "target/generated-test-sources");
 
 
     }
