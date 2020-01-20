@@ -20,4 +20,12 @@ public class RegexFieldGeneratorTest {
         assertEquals("Assert.assertTrue(response.substring(0, 1).matches(\"0|1\"));", regexField.getExpectedValidation());
     }
 
+    @Test
+    public void getExpectedValidation_range() {
+        final RegexFieldGenerator regexField = new RegexFieldGenerator("\\d{2}", 0, 1);
+        final String result = regexField.getExpectedValidation();
+        System.out.println(result);
+        assertEquals("Assert.assertTrue(response.substring(0, 1).matches(\"\\\\d{2}\"));", result);
+    }
+
 }

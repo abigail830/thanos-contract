@@ -25,6 +25,9 @@ public class RegexFieldGenerator implements Generator {
     @Override
     public String getExpectedValidation() {
         Integer endIndex = startIndex + length;
+        if (content.contains("\\")) {
+            content = content.replace("\\", "\\\\");
+        }
         return "Assert.assertTrue(response.substring(" + startIndex + ", " + endIndex + ").matches(\"" + content + "\"));";
     }
 }
