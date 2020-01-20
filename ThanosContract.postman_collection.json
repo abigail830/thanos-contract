@@ -1,0 +1,398 @@
+{
+	"info": {
+		"_postman_id": "c69c1331-d7d3-4c56-ace2-47198392d4b0",
+		"name": "ThanosContract",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "[MockServer] add mock mapping",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"index\": \"key\",\n\t\"port\": 12345\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8082/apis/mappings",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"apis",
+						"mappings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MockServer] get mock mapping",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8082/apis/mappings",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"apis",
+						"mappings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[ContractService] get contract by index",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8081/apis/contracts?index=provider-consumer",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"apis",
+						"contracts"
+					],
+					"query": [
+						{
+							"key": "index",
+							"value": "provider-consumer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[ContractService] get schema by index",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8081/apis/schemas?index=provider-name-version",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8081",
+					"path": [
+						"apis",
+						"schemas"
+					],
+					"query": [
+						{
+							"key": "index",
+							"value": "provider-name-version"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MockServer] get port by index",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8082/apis/mappings/indexes/provider-consumer1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"apis",
+						"mappings",
+						"indexes",
+						"provider-consumer1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MockServer] /utils/build-request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8082/apis/utils/build-request?consumer=consumer1&provider=provider&contractName=contract1&contractVersion=v2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"apis",
+						"utils",
+						"build-request"
+					],
+					"query": [
+						{
+							"key": "consumer",
+							"value": "consumer1"
+						},
+						{
+							"key": "provider",
+							"value": "provider"
+						},
+						{
+							"key": "contractName",
+							"value": "contract1"
+						},
+						{
+							"key": "contractVersion",
+							"value": "v2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MockServer] /utils/parse-request",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8082/apis/utils/parse-request?request=00schema1123456123456789012345671&provider=provider&schemaName=schema1&schemaVersion=v1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"apis",
+						"utils",
+						"parse-request"
+					],
+					"query": [
+						{
+							"key": "request",
+							"value": "00schema1123456123456789012345671"
+						},
+						{
+							"key": "provider",
+							"value": "provider"
+						},
+						{
+							"key": "schemaName",
+							"value": "schema1"
+						},
+						{
+							"key": "schemaVersion",
+							"value": "v1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MockServer] /apis/contracts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"contractNameNew\",\"version\":\"contractVersion\",\"schemaIndex\":\"provider-name-version\",\"consumer\":\"consumer\",\"provider\":\"provider\",\"req\":[{\"name\":\"field1\",\"content\":\"value1\"},{\"name\":\"field2\",\"content\":\"regex(0|1)\"}],\"res\":[{\"name\":\"field1\",\"content\":\"response1\"},{\"name\":\"field2\",\"content\":\"regex(\\\\d{2})\"}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8082/apis/contracts",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"apis",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[MockServer] /apis/schemas",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"provider\":\"provider\",\"version\":\"version\",\"name\":\"name\",\"request\":[{\"name\":\"field1\",\"type\":\"CHAR\",\"length\":6,\"content\":\"value1\"},{\"name\":\"field2\",\"type\":\"CHAR\",\"length\":1,\"content\":\"regex(0|1|2)\"}],\"response\":[{\"name\":\"field1\",\"type\":\"CHAR\",\"length\":9,\"content\":\"response1\"},{\"name\":\"field2\",\"type\":\"CHAR\",\"length\":1,\"content\":\"regex(\\\\d{2})\"},{\"name\":\"field3\",\"type\":\"CHAR\",\"length\":1,\"content\":\"regex(A|B|C)\"}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8082/apis/schemas",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"apis",
+						"schemas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[CodeGenerator] generate to String",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"contract1\",\n\t\"consumer\": \"consumer2\",\n\t\"provider\": \"provider\",\n\t\"version\": \"v1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8083/apis/generate",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8083",
+					"path": [
+						"apis",
+						"generate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
