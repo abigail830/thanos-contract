@@ -8,6 +8,13 @@
 4. Rest查询/apis/mappings获取TCP端口列表
 5. 指向对应端口进行正常挡板使用
 
+**Remark:**
+* 可外部覆盖的配置：
+    * platformMode（true/false）
+    * contractService.baseHttpPath（路径信息如'http://localhost:8081'， platformMode时必须配置）
+    * 如若没有配置则默认使用application.properties中的值
+
+
 ## Functions
 
 * [x] 为每对生产者-消费者启动挡板服务。Startup diff MockServerThread, each thread serve for provider-consumer pair and via diff port

@@ -8,7 +8,12 @@
 4. Rest调用/apis/generate，并提供对应contract的key信息，获取junit代码案例
 5. 把代码复制到所需的项目工程中，稍修改对应的port，并在setup方法中准备好代码启动该项目工程的TCP线程，即可运行junit案例
 
-**Remark:** 建议在目标项目工程中，把启动服务的功能抽取到一个Base.java里面，那新添加Junit的时候只需要继承这个base。 具体可以参考MockServer模块中的src/test/IntegrationBase.Java
+**Remark:** 
+* 可外部覆盖的配置：
+    * platformMode（true/false）
+    * junit.basePath（路径信息如src/test/java）
+    * 如若没有配置则默认使用application.properties中的值
+* 建议在目标项目工程中，把启动服务的功能抽取到一个Base.java里面，那新添加Junit的时候只需要继承这个base。 具体可以参考MockServer模块中的src/test/IntegrationBase.Java
 
 
 ## Functions

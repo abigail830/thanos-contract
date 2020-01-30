@@ -26,7 +26,7 @@ public class ContractRestClient {
     }
 
     public List<String> getAllContractIndex() throws IOException, InfraException {
-        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/contracts/indexs").newBuilder();
+        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/contracts/index").newBuilder();
         final String url = urlBuild.build().toString();
         log.debug("url going to approach is: {}", url);
 
@@ -38,8 +38,8 @@ public class ContractRestClient {
     }
 
     public List<ContractDTO> getContractByIndex(String indexName) throws IOException, InfraException {
-        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/contracts").newBuilder();
-        urlBuild.addQueryParameter("index", indexName);
+        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/contracts/index/" + indexName).newBuilder();
+//        urlBuild.addQueryParameter("index", indexName);
         final String url = urlBuild.build().toString();
         log.debug("url going to approach is: {}", url);
 
@@ -51,10 +51,12 @@ public class ContractRestClient {
     }
 
     public List<SchemaDTO> getSchemaByIndex(List<String> schemaNeededs) throws IOException, InfraException {
-        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/schemas").newBuilder();
-        schemaNeededs.forEach(schemaIndex -> {
-            urlBuild.addQueryParameter("index", schemaIndex);
-        });
+        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/schemas/keys").newBuilder();
+        String lst = (schemaNeededs.toString()).substring(1, schemaNeededs.toString().length() - 1);
+        urlBuild.addQueryParameter("schemaKeys", lst);
+//        schemaNeededs.forEach(schemaIndex -> {
+//            urlBuild.addQueryParameter("schemaKeys", schemaIndex);
+//        });
         final String url = urlBuild.build().toString();
         log.debug("url going to approach is: {}", url);
 

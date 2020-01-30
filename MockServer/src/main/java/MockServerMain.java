@@ -10,6 +10,7 @@ import com.thanos.contract.mockserver.infrastructure.client.ContractRestClientRe
 import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import io.muserver.Method;
 import io.muserver.MuServer;
+import io.muserver.rest.CORSConfigBuilder;
 import io.muserver.rest.RestHandlerBuilder;
 import lombok.extern.slf4j.Slf4j;
 
@@ -72,7 +73,7 @@ public class MockServerMain {
     }
 
     synchronized static void printStartupLog() {
-        log.info("Startup as standalone mode: {}", PropertiesParser.isPlatformMode());
+        log.info("Startup as platform mode: {}", PropertiesParser.isPlatformMode());
         log.info("###########################################");
         log.info("            Service is up!                 ");
         log.info("###########################################");
@@ -102,7 +103,10 @@ public class MockServerMain {
                         .addCustomWriter(new JacksonJaxbJsonProvider())
                         .addCustomReader(new JacksonJaxbJsonProvider())
                         .withOpenApiJsonUrl("/openapi.json")
-                        .withOpenApiHtmlUrl("/api.html"))
+                        .withOpenApiHtmlUrl("/api.html").withCORS(
+                                CORSConfigBuilder.corsConfig()
+                                        .withAllowedOriginRegex("http(s)?://localhost:[0-9]+")
+                        ))
                 .addHandler(Method.GET, "/health", ((muRequest, muResponse, map) -> {
                     muResponse.write("UP");
                 }))
