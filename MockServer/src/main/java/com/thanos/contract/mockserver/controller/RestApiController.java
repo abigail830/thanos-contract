@@ -7,7 +7,6 @@ import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
 import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.exception.BizException;
 import com.thanos.contract.mockserver.infrastructure.client.JsonUtil;
-import com.thanos.contract.mockserver.infrastructure.dto.ContractDTO;
 import com.thanos.contract.mockserver.infrastructure.dto.SchemaDTO;
 import com.thanos.contract.mockserver.infrastructure.parser.PropertiesParser;
 import lombok.extern.slf4j.Slf4j;
@@ -55,7 +54,7 @@ public class RestApiController {
 
     @POST
     @Path("/contracts")
-    public Response addOrUpdateContracts(ContractDTO contractDTO) {
+    public Response addOrUpdateContracts(ContractNotifyDTO contractDTO) {
         return platformModeOnly(contractDTO.toContract(),
                 c -> mockServerService.addOrUpdateContract((Contract) c));
     }
@@ -70,13 +69,14 @@ public class RestApiController {
                         .entity("This API only allowed in platform mode").build();
             }
         } catch (BizException ex) {
+            log.warn("{}", ex);
             return Response.status(Response.Status.BAD_REQUEST).entity(ex.getMessage()).build();
         }
     }
 
 
     @GET
-    @Path("/utils/build-request")
+    @Path("/utils/build-req")
     @Produces({MediaType.APPLICATION_JSON})
     public Response buildRequestForContract(@QueryParam("consumer") String consumer,
                                             @QueryParam("provider") String provider,
@@ -92,8 +92,8 @@ public class RestApiController {
     }
 
     @GET
-    @Path("/utils/parse-request")
-    public Response parseRequest(@QueryParam("request") String request,
+    @Path("/utils/parse-req")
+    public Response parseRequest(@QueryParam("req") String request,
                                  @QueryParam("provider") String provider,
                                  @QueryParam("schemaName") String schemaName,
                                  @QueryParam("schemaVersion") String schemaVersion) {

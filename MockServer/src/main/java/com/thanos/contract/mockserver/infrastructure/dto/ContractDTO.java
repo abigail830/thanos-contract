@@ -1,5 +1,6 @@
 package com.thanos.contract.mockserver.infrastructure.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
 import com.thanos.contract.mockserver.domain.mockserver.model.ContractField;
 import lombok.*;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContractDTO {
 
     private String name;
@@ -30,9 +32,9 @@ public class ContractDTO {
     }
 
     public Contract toContract() {
-        final LinkedList<ContractField> request = req.stream()
+        final LinkedList<ContractField> request = this.req.stream()
                 .map(ContractFieldDTO::toContractField).collect(Collectors.toCollection(LinkedList::new));
-        final LinkedList<ContractField> response = res.stream()
+        final LinkedList<ContractField> response = this.res.stream()
                 .map(ContractFieldDTO::toContractField).collect(Collectors.toCollection(LinkedList::new));
 
         return new Contract(name, version, schemaIndex, consumer, provider, request, response);

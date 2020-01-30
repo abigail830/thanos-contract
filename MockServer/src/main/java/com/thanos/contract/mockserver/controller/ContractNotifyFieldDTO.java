@@ -1,4 +1,4 @@
-package com.thanos.contract.mockserver.infrastructure.dto;
+package com.thanos.contract.mockserver.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thanos.contract.mockserver.domain.mockserver.model.ContractField;
@@ -10,12 +10,12 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ContractFieldDTO {
+public class ContractNotifyFieldDTO {
 
     private String name;
-    private String content;
+    private String contractContent;
 
     public ContractField toContractField() {
-        return new ContractField(name, content);
+        return new ContractField(name, contractContent);
     }
 }

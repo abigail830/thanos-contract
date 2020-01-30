@@ -1,5 +1,6 @@
 package com.thanos.contract.mockserver.infrastructure.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.domain.mockserver.model.SchemaField;
 import lombok.*;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SchemaDTO {
 
     private String provider;
