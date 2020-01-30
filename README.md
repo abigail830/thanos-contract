@@ -144,6 +144,9 @@ Detail please reference: [README](codegenerator/README.md)
 ### PLATFORM mode draft diagram 设计草图
 <img src="https://plantuml-server.kkeisuke.app/svg/ZLFDZjem4BxxAQOSAbRgagwqfvwsZQfjLuL56r2FQ716nAfZH_O4XAg-UyU19G5QjRxOutn_aqaU8cFWjhQGtwy-Mwh9SLHlZDEsBQaD5Yhc9dx8ie2xoSPmrQxRI45xnmATQ5zdBqPZAFtCK4Cso-zlvnOTBwVVia2MC59sT_jUxbUvaD0u2fD679MQKuZUZPFUEnWjPHl9BgZOrl88ti8y-AqfvJowKUf47tE5piVbLq4lZiV4dE9-JV2nCO_8jCCzO8GTMIladfkI1zHSKDWQJGV3uKrIUi8j7XIDOtYbf4HHLrHZbwVOHwPwzScthiIm7-kxKvxEJZFaFj3e1dugaDLdgBt-aTowlgUdujgv1m9gxKDft0ROdnA9jgmBTUrBUYGv8VlGzJUeXnx7IuAdrXc60kl6qj-Cr2-bNiWUfpMOm9V5Ojwf5i-pz5fwq5cRYxn3RGt24Pc0lSxrN2w4B-7dJLw3LpCocshjXv_BMQ8_1RzASSRuJkj2Qk94ym6UkPAf7Q8DWV_LoqK7_-Ie1tAb_3U_0G00.svg" width="550" >
 
+* ContractService: https://github.com/abigail830/ThanosUI-ContractService
+* ThanosUI: https://github.com/abigail830/ThanosUI
+
 
 ## License
 ThanosContract is under [MIT](LICENSE) license

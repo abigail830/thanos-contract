@@ -12,12 +12,6 @@ matrix:
     - bash <(curl -s https://codecov.io/bash)
   -
     before_script:
-    - "cd ContractService"
-    jdk: openjdk8
-    language: java
-    script: "mvn clean package"
-  -
-    before_script:
     - "cd codegenerator"
     jdk: openjdk8
     language: java
