@@ -7,10 +7,7 @@ import com.thanos.contract.mockserver.domain.mapping.MockMappingService;
 import com.thanos.contract.mockserver.domain.mockserver.MockServerService;
 import com.thanos.contract.mockserver.domain.mockserver.MockServerThread;
 import com.thanos.contract.mockserver.exception.BizException;
-import com.thanos.contract.mockserver.infrastructure.eventbus.ContractUpdateEvent;
-import com.thanos.contract.mockserver.infrastructure.eventbus.EventBusFactory;
-import com.thanos.contract.mockserver.infrastructure.eventbus.NewMockMappingEvent;
-import com.thanos.contract.mockserver.infrastructure.eventbus.ShutdownMockEvent;
+import com.thanos.contract.mockserver.infrastructure.eventbus.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -65,6 +62,17 @@ public class MockServerController {
             asyncEventBus.post(
                     new ShutdownMockEvent(newMockMappingEvent.getIndex(), newMockMappingEvent.getPort()));
             startedIndexs.remove(newMockMappingEvent.getIndex());
+        }
+    }
+
+    @Subscribe
+    public void receiveContractRemoveEvent(ContractRemoveEvent contractRemoveEvent) {
+        final Integer contractCountByIndex =
+                mockServerService.getContractCountByIndex(contractRemoveEvent.getContract().getIndex());
+        if (contractCountByIndex == 0) {
+            mockMappingService.removeMockMapping(contractRemoveEvent.getContract().getIndex());
+            startedIndexs.remove(contractRemoveEvent.getContract().getIndex());
+            log.info("MockServerController will remove {}.", contractRemoveEvent.getContract().getIndex());
         }
     }
 

@@ -21,6 +21,10 @@ public class MockMappingCache {
             mockMappings.put(mockMapping.getIndex(), mockMapping.getPort());
     }
 
+    synchronized void removeMockMapping(String index) {
+        mockMappings.remove(index);
+    }
+
     synchronized Map<String, Integer> getAllMockMapping() {
         return mockMappings;
     }

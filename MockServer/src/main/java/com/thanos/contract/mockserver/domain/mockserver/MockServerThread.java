@@ -128,6 +128,23 @@ public class MockServerThread implements Runnable {
     }
 
     @Subscribe
+    public void receiveContractRemoveEvent(ContractRemoveEvent contractRemoveEvent) {
+        if (index.equalsIgnoreCase(contractRemoveEvent.getContract().getIndex())) {
+
+            contractList.stream()
+                    .filter(contract -> contract.getKey().equalsIgnoreCase(contractRemoveEvent.getContract().getKey()))
+                    .findFirst().ifPresent(contract -> {
+                contractList.remove(contract);
+                log.info("MockServer Thread [{}] updated locally", index);
+            });
+        }
+        if (contractList.isEmpty()) {
+            log.info("No associated contract. Will stop this MockServer Thread [{}]", index);
+            stop();
+        }
+    }
+
+    @Subscribe
     public void receiveContractUpdateEvent(ContractUpdateEvent contractUpdateEvent) {
         if (index.equalsIgnoreCase(contractUpdateEvent.getContract().getIndex())) {
 

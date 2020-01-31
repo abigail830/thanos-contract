@@ -27,6 +27,10 @@ public class MockMappingService {
         mockMappingCache.addNewMockMapping(mockMapping);
     }
 
+    public void removeMockMapping(String index) throws BizException {
+        mockMappingCache.removeMockMapping(index);
+    }
+
     public List<String> getAllMockMappingIndexs() throws BizException {
         final Map<String, Integer> allMockMapping = mockMappingCache.getAllMockMapping();
         return new ArrayList<>(allMockMapping.keySet());

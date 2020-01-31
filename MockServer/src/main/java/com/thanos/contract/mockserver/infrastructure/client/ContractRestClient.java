@@ -50,6 +50,17 @@ public class ContractRestClient {
 
     }
 
+    public Integer getContractCountByIndex(String index) throws IOException {
+        HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/contracts/count/index/" + index).newBuilder();
+        final String url = urlBuild.build().toString();
+        log.debug("url going to approach is: {}", url);
+
+        String result = httpGet(url);
+        log.debug("HTTP GET result is {}", result);
+        return Integer.valueOf(result);
+
+    }
+
     public List<SchemaDTO> getSchemaByIndex(List<String> schemaNeededs) throws IOException, InfraException {
         HttpUrl.Builder urlBuild = HttpUrl.parse(basePath + "/schemas/keys").newBuilder();
         String lst = (schemaNeededs.toString()).substring(1, schemaNeededs.toString().length() - 1);

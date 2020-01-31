@@ -1,6 +1,7 @@
 package com.thanos.contract.mockserver.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.common.base.Strings;
 import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
 import com.thanos.contract.mockserver.domain.mockserver.model.ContractField;
 import lombok.*;
@@ -43,8 +44,10 @@ public class ContractNotifyDTO {
 
     public Contract toContract() {
         final LinkedList<ContractField> request = this.request.stream()
+                .filter(field -> !Strings.isNullOrEmpty(field.getContractContent()))
                 .map(ContractNotifyFieldDTO::toContractField).collect(Collectors.toCollection(LinkedList::new));
         final LinkedList<ContractField> response = this.response.stream()
+                .filter(field -> !Strings.isNullOrEmpty(field.getContractContent()))
                 .map(ContractNotifyFieldDTO::toContractField).collect(Collectors.toCollection(LinkedList::new));
 
         return new Contract(name, version, schemaIndex, consumer, provider, request, response);

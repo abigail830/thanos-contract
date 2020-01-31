@@ -57,4 +57,14 @@ public class ContractRestClientRepoImpl implements MockServerRepository {
             return new ArrayList<>();
         }
     }
+
+    @Override
+    public Integer getContractCountByIndex(String index) throws BizException {
+        try {
+            return restClient.getContractCountByIndex(index);
+        } catch (IOException e) {
+            log.error("Fail to HTTP GET getContractCountByIndex", e);
+            throw new BizException("Fail to HTTP GET getContractCountByIndex", e);
+        }
+    }
 }

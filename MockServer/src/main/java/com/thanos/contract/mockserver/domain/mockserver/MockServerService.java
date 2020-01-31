@@ -5,6 +5,7 @@ import com.thanos.contract.mockserver.domain.mockserver.model.Contract;
 import com.thanos.contract.mockserver.domain.mockserver.model.Message;
 import com.thanos.contract.mockserver.domain.mockserver.model.Schema;
 import com.thanos.contract.mockserver.exception.BizException;
+import com.thanos.contract.mockserver.infrastructure.eventbus.ContractRemoveEvent;
 import com.thanos.contract.mockserver.infrastructure.eventbus.ContractUpdateEvent;
 import com.thanos.contract.mockserver.infrastructure.eventbus.EventBusFactory;
 import com.thanos.contract.mockserver.infrastructure.eventbus.SchemaUpdateEvent;
@@ -90,7 +91,14 @@ public class MockServerService {
         } else {
             throw new BizException("Invalid input");
         }
+    }
 
+    public void removeContract(Contract contract) {
+        EventBusFactory.getInstance().post(new ContractRemoveEvent(contract));
+        log.debug("ContractRemoveEvent send [{}]", contract);
+    }
 
+    public Integer getContractCountByIndex(String index) {
+        return mockServerRepository.getContractCountByIndex(index);
     }
 }

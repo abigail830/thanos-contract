@@ -31,4 +31,9 @@ public class FileBaseCacheRepoImpl implements MockServerRepository {
     public List<Schema> getSchemaByIndex(List<String> schemaNeeded) throws BizException {
         return FileBaseCache.getSchemaByIndex(schemaNeeded);
     }
+
+    @Override
+    public Integer getContractCountByIndex(String index) throws BizException {
+        return FileBaseCache.getContractByIndex(index).size();
+    }
 }

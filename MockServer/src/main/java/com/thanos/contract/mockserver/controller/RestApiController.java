@@ -55,8 +55,16 @@ public class RestApiController {
     @POST
     @Path("/contracts")
     public Response addOrUpdateContracts(ContractNotifyDTO contractDTO) {
+        log.debug("{}", contractDTO);
         return platformModeOnly(contractDTO.toContract(),
                 c -> mockServerService.addOrUpdateContract((Contract) c));
+    }
+
+    @POST
+    @Path("/remove/contracts")
+    public Response removeContracts(ContractKeyNotifyDTO contractKeyNotifyDTO) {
+        return platformModeOnly(contractKeyNotifyDTO.toContract(),
+                c -> mockServerService.removeContract((Contract) c));
     }
 
     Response platformModeOnly(Object obj, Consumer<Object> consumer) {

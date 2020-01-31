@@ -13,4 +13,6 @@ public interface MockServerRepository {
     List<Contract> getContractByIndex(String index) throws BizException;
 
     List<Schema> getSchemaByIndex(List<String> schemaNeeded) throws BizException;
+
+    Integer getContractCountByIndex(String index) throws BizException;
 }
