@@ -1,7 +1,7 @@
-package com.thanos.contract.codegenerator.controller;
+package com.thanos.contract.codegenerator.api;
 
-import com.thanos.contract.codegenerator.controller.dto.ContractKeyDTO;
-import com.thanos.contract.codegenerator.domain.CodeGeneratorService;
+import com.thanos.contract.codegenerator.api.dto.ContractKeyDTO;
+import com.thanos.contract.codegenerator.appl.CodeGeneratorApplService;
 import com.thanos.contract.codegenerator.exception.BizException;
 
 import javax.ws.rs.POST;
@@ -12,29 +12,29 @@ import javax.ws.rs.core.MediaType;
 @Path("/apis")
 public class RestApiController {
 
-    CodeGeneratorService codeGeneratorService;
+    CodeGeneratorApplService codeGeneratorApplService;
 
-    public RestApiController(CodeGeneratorService codeGeneratorService) {
-        this.codeGeneratorService = codeGeneratorService;
+    public RestApiController(CodeGeneratorApplService codeGeneratorApplService) {
+        this.codeGeneratorApplService = codeGeneratorApplService;
     }
 
     @POST
-    @Path("/generate")
+    @Path("/generateToString")
     @Produces(MediaType.APPLICATION_JSON)
     public String generate(ContractKeyDTO contractKeyDTO) {
         if (contractKeyDTO.isValid()) {
-            return codeGeneratorService.generateJunit(contractKeyDTO.toContractKey());
+            return codeGeneratorApplService.generateJunit(contractKeyDTO.toContractKey());
         } else {
             throw new BizException("Invalid input parameter");
         }
     }
 
     @POST
-    @Path("/generate/file")
+    @Path("/generateToString/file")
     @Produces(MediaType.APPLICATION_JSON)
     public void generateToFile(ContractKeyDTO contractKeyDTO) {
         if (contractKeyDTO.isValid()) {
-            codeGeneratorService.generateJunitToFile(contractKeyDTO.toContractKey());
+            codeGeneratorApplService.generateJunitToFile(contractKeyDTO.toContractKey());
         } else {
             throw new BizException("Invalid input parameter");
         }

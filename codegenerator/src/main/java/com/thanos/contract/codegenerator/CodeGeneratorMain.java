@@ -1,8 +1,9 @@
 package com.thanos.contract.codegenerator;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
-import com.thanos.contract.codegenerator.controller.RestApiController;
-import com.thanos.contract.codegenerator.domain.CodeGeneratorService;
+import com.thanos.contract.codegenerator.api.RestApiController;
+import com.thanos.contract.codegenerator.appl.CodeGeneratorApplService;
+import com.thanos.contract.codegenerator.domain.CoreGeneratorService;
 import com.thanos.contract.codegenerator.domain.FileBaseRepository;
 import com.thanos.contract.codegenerator.infrastructure.cache.FileBaseCache;
 import com.thanos.contract.codegenerator.infrastructure.cache.FileBaseCacheRepoImpl;
@@ -25,7 +26,7 @@ public class CodeGeneratorMain {
 
     private static FileBaseCache fileBaseCache;
     private static FileBaseRepository fileBaseRepository;
-    private static CodeGeneratorService codeGeneratorService;
+    private static CodeGeneratorApplService codeGeneratorApplService;
 
     public static void main(String[] args) {
         try {
@@ -40,9 +41,10 @@ public class CodeGeneratorMain {
                 fileBaseCache = new FileBaseCache();
                 fileBaseCache.init();
                 fileBaseRepository = new FileBaseCacheRepoImpl(fileBaseCache);
-                codeGeneratorService = new CodeGeneratorService(fileBaseRepository);
+                CoreGeneratorService coreGeneratorService = new CoreGeneratorService();
+                codeGeneratorApplService = new CodeGeneratorApplService(fileBaseRepository, coreGeneratorService);
             }
-            startupWebServer(codeGeneratorService);
+            startupWebServer(codeGeneratorApplService);
             printStartupLog();
 
         } catch (IOException e) {
@@ -59,13 +61,13 @@ public class CodeGeneratorMain {
 
     }
 
-    private static void startupWebServer(CodeGeneratorService codeGeneratorService) throws IOException {
+    private static void startupWebServer(CodeGeneratorApplService codeGeneratorApplService) throws IOException {
         PropertiesParser.getPropValues("port")
                 .ifPresent(s -> httpPort = Integer.valueOf(s));
 
         webServer = httpServer()
                 .withHttpPort(httpPort)
-                .addHandler(RestHandlerBuilder.restHandler(new RestApiController(codeGeneratorService))
+                .addHandler(RestHandlerBuilder.restHandler(new RestApiController(codeGeneratorApplService))
                         .addCustomWriter(new JacksonJaxbJsonProvider())
                         .addCustomReader(new JacksonJaxbJsonProvider())
                         .withOpenApiJsonUrl("/openapi.json")

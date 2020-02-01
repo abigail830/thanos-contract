@@ -1,5 +1,6 @@
-package com.thanos.contract.codegenerator.controller.dto;
+package com.thanos.contract.codegenerator.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import static com.google.common.base.Strings.isNullOrEmpty;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContractKeyDTO {
 
     private String provider;
