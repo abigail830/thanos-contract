@@ -1,5 +1,6 @@
 package com.thanos.contract.codegenerator.controller;
 
+import com.thanos.contract.codegenerator.controller.dto.ContractKeyDTO;
 import com.thanos.contract.codegenerator.domain.CodeGeneratorService;
 import com.thanos.contract.codegenerator.exception.BizException;
 

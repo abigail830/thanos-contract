@@ -1,4 +1,4 @@
-package com.thanos.contract.codegenerator.controller;
+package com.thanos.contract.codegenerator.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
