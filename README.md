@@ -134,8 +134,9 @@ Detail please reference: [README](https://github.com/abigail830/thanos-mockserve
 ### CodeGenerator 代码生成引擎
 Detail please reference: [README](https://github.com/abigail830/thanos-code-generator/blob/master/README.md)
 * [x] STANDALONE模式：根据指定路径契约文件自动生成对应的生产者测试案例，可按需复制黏贴到项目工程代码中
+* [x] PLATFORM模式：该模式下服务可以直接作为Jar包在ContractService里面调用生成测试案例功能即可，无需独立部署增加架构复杂和延时。
 * [ ] PLUGIN模式(?)：插件根据生产者项目工程路径内的契约文件自动生成对应的生产者测试案例，可直接修改运行
-* [ ] PLATFORM模式：能从ContractService中获取最新契约及更新，动态生成对应的生产者测试案例
+
 
 
 ### PLATFORM mode draft diagram 设计草图
@@ -144,6 +145,8 @@ Detail please reference: [README](https://github.com/abigail830/thanos-code-gene
 * ContractService: https://hub.docker.com/repository/docker/saraqian/thanos-contract-service
 * ThanosUI: https://github.com/abigail830/ThanosUI
 
+Remark：
+* CodeGenerator可以直接作为Jar包在ContractService里面调用生成测试案例功能即可，无需独立部署增加架构复杂和延时。
 
 ## License
 ThanosContract is under [MIT](LICENSE) license
