@@ -1,15 +1,12 @@
 # ThanosContract 灭霸契约
 
-[![Travis Build Status](https://travis-ci.org/abigail830/ThanosContract.svg?branch=master)](https://travis-ci.org/abigail830/ThanosContract)
-[![Jitpack Statuc](https://jitpack.io/v/abigail830/thanoscontract.svg)](https://jitpack.io/#abigail830/thanoscontract)
-[![Maintainability](https://api.codeclimate.com/v1/badges/9a15dac7b088a848522f/maintainability)](https://codeclimate.com/github/abigail830/ThanosContract/maintainability)
-[![codecov](https://codecov.io/gh/abigail830/ThanosContract/branch/master/graph/badge.svg)](https://codecov.io/gh/abigail830/ThanosContract)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fabigail830%2FThanosContract.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fabigail830%2FThanosContract?ref=badge_shield)
-
 # Vision 愿景
 
-ThanosContract is target to help the systems which still using TCP & Fix-length message to implement Contract Test. 灭霸契约旨在为还在使用TCP+定长报文的系统提供契约测试工具，核心功能包括：
+**旨在为使用TCP和定长报文的系统提供如灭霸弹指般轻松的契约测试**
 
+ThanosContract is target to help the systems which still using TCP & Fix-length message to implement Contract Test. 
+
+核心功能包括：
 * Provide MockServer for consumer: 为消费者提供挡板服务
 * Provider Junit Test Sample for provider: 为生产者提供自动化测试案例
 
@@ -130,23 +127,26 @@ public class ContractFieldDTO {
 # Core Components 核心组件
 
 ### MockServer 挡板服务
-Detail please reference: [README](MockServer/README.md)
+Detail please reference: [README](https://github.com/abigail830/thanos-mockserver/blob/master/README.md)
 * [x] STANDALONE模式：能根据路径内的契约文件自动生成对应的挡板服务
 * [x] PLATFORM模式：能从ContractService中获取最新契约及更新，动态维护挡板服务
 
 ### CodeGenerator 代码生成引擎
-Detail please reference: [README](codegenerator/README.md)
+Detail please reference: [README](https://github.com/abigail830/thanos-code-generator/blob/master/README.md)
 * [x] STANDALONE模式：根据指定路径契约文件自动生成对应的生产者测试案例，可按需复制黏贴到项目工程代码中
+* [x] PLATFORM模式：该模式下服务可以直接作为Jar包在ContractService里面调用生成测试案例功能即可，无需独立部署增加架构复杂和延时。
 * [ ] PLUGIN模式(?)：插件根据生产者项目工程路径内的契约文件自动生成对应的生产者测试案例，可直接修改运行
-* [ ] PLATFORM模式：能从ContractService中获取最新契约及更新，动态生成对应的生产者测试案例
+
 
 
 ### PLATFORM mode draft diagram 设计草图
 <img src="https://plantuml-server.kkeisuke.app/svg/ZLFDZjem4BxxAQOSAbRgagwqfvwsZQfjLuL56r2FQ716nAfZH_O4XAg-UyU19G5QjRxOutn_aqaU8cFWjhQGtwy-Mwh9SLHlZDEsBQaD5Yhc9dx8ie2xoSPmrQxRI45xnmATQ5zdBqPZAFtCK4Cso-zlvnOTBwVVia2MC59sT_jUxbUvaD0u2fD679MQKuZUZPFUEnWjPHl9BgZOrl88ti8y-AqfvJowKUf47tE5piVbLq4lZiV4dE9-JV2nCO_8jCCzO8GTMIladfkI1zHSKDWQJGV3uKrIUi8j7XIDOtYbf4HHLrHZbwVOHwPwzScthiIm7-kxKvxEJZFaFj3e1dugaDLdgBt-aTowlgUdujgv1m9gxKDft0ROdnA9jgmBTUrBUYGv8VlGzJUeXnx7IuAdrXc60kl6qj-Cr2-bNiWUfpMOm9V5Ojwf5i-pz5fwq5cRYxn3RGt24Pc0lSxrN2w4B-7dJLw3LpCocshjXv_BMQ8_1RzASSRuJkj2Qk94ym6UkPAf7Q8DWV_LoqK7_-Ie1tAb_3U_0G00.svg" width="550" >
 
-* ContractService: https://github.com/abigail830/ThanosUI-ContractService
+* ContractService: https://hub.docker.com/repository/docker/saraqian/thanos-contract-service
 * ThanosUI: https://github.com/abigail830/ThanosUI
 
+Remark：
+* CodeGenerator可以直接作为Jar包在ContractService里面调用生成测试案例功能即可，无需独立部署增加架构复杂和延时。
 
 ## License
 ThanosContract is under [MIT](LICENSE) license
