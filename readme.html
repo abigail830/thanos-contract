@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>README</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="thanoscontract-灭霸契约" class="slide level1">
+<h1>ThanosContract 灭霸契约</h1>
+</section>
+<section id="vision-愿景" class="slide level1">
+<h1>Vision 愿景</h1>
+<p><strong>旨在为使用TCP和定长报文的系统提供如灭霸弹指般轻松的契约测试</strong></p>
+<p>ThanosContract is target to help the systems which still using TCP &amp; Fix-length message to implement Contract Test.</p>
+<p>核心功能包括： * Provide MockServer for consumer: 为消费者提供挡板服务 * Provider Junit Test Sample for provider: 为生产者提供自动化测试案例</p>
+<h3 id="background-背景">Background 背景</h3>
+<p>在内外部系统依赖关系比较复杂的场景下，常会遇到： * 并行开发困难，经常需要等待联调测试，往往到端到端测试阶段才发现问题。因为发现问题的时机太晚，重复翻修导致效率低。 * 因为端到端测试经常发现问题，于是添加的大量端到端测试集合，从测试的编写、维护到准备大量的测试数据，投入非常大，然而后续运行不稳定，需要大量人工介入。</p>
+<figure>
+<img data-src="background.jpg" title="常见流程" alt="" /><figcaption>常见流程</figcaption>
+</figure>
+<h3 id="taget-目标流程">Taget 目标流程</h3>
+<p>契约测试让生产者与消费者之间能基于契约而更高效也更高质量地并行开发，减少端到端联调的压力。在依赖关系复杂的系统间尤为重要。它目标是在开发初期就协定契约，并在整个开发测试过程中以同一份契约规约双方，测试驱动从而保证质量，减轻端到端的压力。</p>
+<figure>
+<img data-src="target.jpg" title="目标流程" alt="" /><figcaption>目标流程</figcaption>
+</figure>
+<h3 id="difference-差异化">Difference 差异化</h3>
+<p>Different from <strong>SpringCloudContract</strong> &amp; <strong>Pact</strong>, ThanosContract support(&amp; only support) TCP + fix-length messaging.</p>
+<p>现有成熟的契约测试框架SpringCloudContract和Pact提供了基于HTTP+JSON格式的契约测试框架，但现实仍有不少的系统（如银行核心系统）依然徘徊在TCP+定长报文的场景之中，无法使用契约测试的概念去提高质量和减轻对端到端测试的压力。而灭霸契约则提供了TCP+定长报文的契约测试支持。</p>
+</section>
+<section id="契约dsl" class="slide level1">
+<h1>契约DSL</h1>
+<p>跟JSON的契约定义不同，定长报文的DSL分为两部分： * <strong>Schema：</strong> 基础接口定义，如字段类型，长度，内容限制 * <strong>Contract：</strong> 具体场景下，面向一对生产者-消费者之间Request和Response的消息体具体内容</p>
+<p><strong>注：</strong> 编写契约有一定门槛，这跟其他契约测试框架遇到的问题是一样的，但后续完全可以通过UI等的方式去降低编写门槛，如使用更简易的CSV输入Schema，正则也是可以把常用正则更好的提前封装</p>
+<h2 id="schema-接口">Schema 接口</h2>
+<ul>
+<li>Content内容可以是某些固定值，也可以是正则（regex开头），将来还会支持定制化FUNC</li>
+<li>下面所有都是必填， request/response里面是列表</li>
+<li>Field列表里面固定4个元素name/type/length/content (方便后续对接UI的表格）</li>
+<li>Schema必须把接口里面的所有field完整定义好</li>
+</ul>
+<p><strong>FileBase Format</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;schema1&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;v1&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">provider</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;provider&#39;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">request</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> MSG_TYPE</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> CHAR</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="at">    </span><span class="fu">length</span><span class="kw">:</span><span class="at"> </span><span class="dv">1</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="at">    </span><span class="fu">content</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;regex(0|1)&#39;</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">response</span><span class="kw">:</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> SUPPLEMENT</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="at">    </span><span class="fu">type</span><span class="kw">:</span><span class="at"> CHAR</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="at">    </span><span class="fu">length</span><span class="kw">:</span><span class="at"> </span><span class="dv">10</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="at">    </span><span class="fu">content</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;regex([a-zA-Z0-9]{10})&#39;</span></span></code></pre></div>
+<p><strong>JSON Format</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">public</span> <span class="kw">class</span> SchemaDTO {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">private</span> <span class="bu">String</span> provider;</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="kw">private</span> <span class="bu">String</span> version;</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="kw">private</span> <span class="bu">String</span> name;</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="kw">private</span> <span class="bu">LinkedList</span>&lt;SchemaFieldDTO&gt; request;</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="kw">private</span> <span class="bu">LinkedList</span>&lt;SchemaFieldDTO&gt; response;</span>
+<span id="cb2-7"><a href="#cb2-7"></a>}</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="kw">public</span> <span class="kw">class</span> SchemaFieldDTO {</span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="bu">String</span> name;</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="bu">String</span> type;</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="bu">Integer</span> length;</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    <span class="bu">String</span> content;</span>
+<span id="cb2-14"><a href="#cb2-14"></a>}</span></code></pre></div>
+<h2 id="contract-契约">Contract 契约</h2>
+<ul>
+<li>契约里面不需要把全部field都填上，只需要写出该场景下关键的field就可以了，其他可以随意内容的参数可以忽略</li>
+<li>后续在匹配时候会按照契约优先排序进行匹配，req部分定义了越多的field优先级就越高，优先匹配</li>
+</ul>
+<p><strong>FileBase Format</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;contract1&#39;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">consumer</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;consumer1&#39;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">provider</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;provider&#39;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;v2&#39;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">schema</span><span class="kw">:</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="at">  </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;schema1&#39;</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="at">  </span><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;v1&#39;</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="at">  </span><span class="fu">provider</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;provider&#39;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="fu">req</span><span class="kw">:</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="at">  </span><span class="fu">MSG_TYPE</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;0&#39;</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="at">  </span><span class="fu">TRAN_ASYNC</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;0&#39;</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="at">  </span><span class="fu">MESSAGE_TYPE</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;schema1&#39;</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="at">  </span><span class="fu">TCODE</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;123456&#39;</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="at">  </span><span class="fu">ACCT_NO</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;12345678901234567&#39;</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="at">  </span><span class="fu">CHOICE</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1&#39;</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="fu">res</span><span class="kw">:</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="at">  </span><span class="fu">SUPPLEMENT</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;SUPPLEMENT&#39;</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="at">  </span><span class="fu">MEMO</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;This is the expected memo for choice 1  &#39;</span></span></code></pre></div>
+<p><strong>JSON Format</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">public</span> <span class="kw">class</span> ContractDTO {</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">private</span> <span class="bu">String</span> name;</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="kw">private</span> <span class="bu">String</span> version;</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="kw">private</span> <span class="bu">String</span> consumer;</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="kw">private</span> <span class="bu">String</span> provider;</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="kw">private</span> <span class="bu">String</span> schemaIndex;</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="kw">private</span> <span class="bu">LinkedList</span>&lt;ContractFieldDTO&gt; req;</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">private</span> <span class="bu">LinkedList</span>&lt;ContractFieldDTO&gt; res;</span>
+<span id="cb4-9"><a href="#cb4-9"></a>}</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="kw">public</span> <span class="kw">class</span> ContractFieldDTO {</span>
+<span id="cb4-12"><a href="#cb4-12"></a>    <span class="kw">private</span> <span class="bu">String</span> name;</span>
+<span id="cb4-13"><a href="#cb4-13"></a>    <span class="kw">private</span> <span class="bu">String</span> content;</span>
+<span id="cb4-14"><a href="#cb4-14"></a>}</span></code></pre></div>
+</section>
+<section id="core-components-核心组件" class="slide level1">
+<h1>Core Components 核心组件</h1>
+<h3 id="mockserver-挡板服务">MockServer 挡板服务</h3>
+<p>Detail please reference: <a href="https://github.com/abigail830/thanos-mockserver/blob/master/README.md">README</a> * [x] STANDALONE模式：能根据路径内的契约文件自动生成对应的挡板服务 * [x] PLATFORM模式：能从ContractService中获取最新契约及更新，动态维护挡板服务</p>
+<h3 id="codegenerator-代码生成引擎">CodeGenerator 代码生成引擎</h3>
+<p>Detail please reference: <a href="https://github.com/abigail830/thanos-code-generator/blob/master/README.md">README</a> * [x] STANDALONE模式：根据指定路径契约文件自动生成对应的生产者测试案例，可按需复制黏贴到项目工程代码中 * [x] PLATFORM模式：该模式下服务可以直接作为Jar包在ContractService里面调用生成测试案例功能即可，无需独立部署增加架构复杂和延时。 * [ ] PLUGIN模式(?)：插件根据生产者项目工程路径内的契约文件自动生成对应的生产者测试案例，可直接修改运行</p>
+<h3 id="platform-mode-draft-diagram-设计草图">PLATFORM mode draft diagram 设计草图</h3>
+<p><img src="https://plantuml-server.kkeisuke.app/svg/ZLFDZjem4BxxAQOSAbRgagwqfvwsZQfjLuL56r2FQ716nAfZH_O4XAg-UyU19G5QjRxOutn_aqaU8cFWjhQGtwy-Mwh9SLHlZDEsBQaD5Yhc9dx8ie2xoSPmrQxRI45xnmATQ5zdBqPZAFtCK4Cso-zlvnOTBwVVia2MC59sT_jUxbUvaD0u2fD679MQKuZUZPFUEnWjPHl9BgZOrl88ti8y-AqfvJowKUf47tE5piVbLq4lZiV4dE9-JV2nCO_8jCCzO8GTMIladfkI1zHSKDWQJGV3uKrIUi8j7XIDOtYbf4HHLrHZbwVOHwPwzScthiIm7-kxKvxEJZFaFj3e1dugaDLdgBt-aTowlgUdujgv1m9gxKDft0ROdnA9jgmBTUrBUYGv8VlGzJUeXnx7IuAdrXc60kl6qj-Cr2-bNiWUfpMOm9V5Ojwf5i-pz5fwq5cRYxn3RGt24Pc0lSxrN2w4B-7dJLw3LpCocshjXv_BMQ8_1RzASSRuJkj2Qk94ym6UkPAf7Q8DWV_LoqK7_-Ie1tAb_3U_0G00.svg" width="550" ></p>
+<ul>
+<li>ContractService: https://hub.docker.com/repository/docker/saraqian/thanos-contract-service</li>
+<li>ThanosUI: https://github.com/abigail830/ThanosUI</li>
+</ul>
+<p>Remark： * CodeGenerator可以直接作为Jar包在ContractService里面调用生成测试案例功能即可，无需独立部署增加架构复杂和延时。</p>
+<h2 id="license">License</h2>
+<p>ThanosContract is under <a href="LICENSE">MIT</a> license</p>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

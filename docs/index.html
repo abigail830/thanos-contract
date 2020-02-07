@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>index</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reset.css">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="灭霸契约" class="slide level1">
+<h1>灭霸契约</h1>
+<p>旨在为使用TCP和定长报文的系统<br />
+提供如灭霸弹指般轻松的契约测试</p>
+<p>Target to help the systems which still using TCP &amp; Fix-length message to implement Contract Test.</p>
+</section>
+<section class="slide level1">
+
+<h3 id="background">Background</h3>
+<h5 id="在内外部系统依赖关系比较复杂的场景下常遇到">在内外部系统依赖关系比较复杂的场景下常遇到：</h5>
+<p><img data-src="../background.jpg" title="常见流程" /></p>
+<ul>
+<li>并行开发困难，经常需要等待联调测试</li>
+<li>端到端测试才发现问题，重复翻修导致效率低</li>
+<li>大量端到端测试集合成本高且不稳定</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h3 id="taget">Taget</h3>
+<p>契约测试让生产者与消费者之间基于契约而更高效也更高质量地并行开发，减少端到端联调的压力。</p>
+<p><img data-src="../target.jpg" title="目标流程" /></p>
+<p>这在依赖关系复杂的系统间尤为重要。</p>
+</section>
+<section class="slide level1">
+
+<h3 id="灭霸契约的核心">灭霸契约的核心</h3>
+<div class="line-block">目标是在开发初期就协定契约，在整个开发测试过程中以同一份契约规约双方，以测试驱动保证质量<br />
+<br />
+</div>
+<h6 id="核心功能包括">核心功能包括</h6>
+<ul>
+<li>为消费者提供挡板服务</li>
+<li>为生产者提供自动化测试案例</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h3 id="difference">Difference</h3>
+<div class="line-block">现有成熟的契约测试框架SpringCloudContract和Pact提供了基于HTTP+JSON格式的契约测试框架<br />
+<br />
+但现实仍有不少的系统（如银行核心系统）依然徘徊在TCP+定长报文的场景之中，无法使用契约测试的概念去提高质量和减轻对端到端测试的压力<br />
+<br />
+而灭霸契约则提供TCP+定长报文的契约测试支持</div>
+</section>
+<section class="slide level1">
+
+<h3 id="契约dsl">契约DSL</h3>
+<p>跟JSON的契约定义不同，定长报文DSL分两部分：</p>
+<ul>
+<li><strong>SCHEMA：</strong> 基础接口定义，如类型，长度，内容</li>
+<li><strong>CONTRACT：</strong> 具体场景下，面向一对生产者-消费者之间Request和Response的消息具体内容</li>
+</ul>
+<div class="line-block"><br />
+<em>注: 编写契约有一定门槛，但完全可以通过UI的方式去降低编写门槛，如可把常用正则提前封装</em></div>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
