@@ -19,7 +19,7 @@ Target to help the systems which still using TCP & Fix-length message to impleme
 
 - 并行开发困难，经常需要等待联调测试
 - 端到端测试才发现问题，重复翻修导致效率低
-- 大量端到端测试集合,维护成本高且不稳定
+- 大量端到端测试集合，维护成本高且不稳定
 
 :::
 
