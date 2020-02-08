@@ -38,6 +38,7 @@ Target to help the systems which still using TCP & Fix-length message to impleme
 |      
  
 ###### 核心功能包括
+- 统一接口管理
 - 为消费者提供挡板服务
 - 为生产者提供自动化测试案例
 
@@ -62,52 +63,22 @@ Target to help the systems which still using TCP & Fix-length message to impleme
 - **CONTRACT：** 具体场景下，面向一对生产者-消费者之间Request和Response的消息具体内容
 
 | 
-| _注: 编写契约有一定门槛，但完全可以通过UI的方式去降低编写门槛，如可把常用正则提前封装_
+| 
+| _注: 编写契约有一定门槛，但完全可以通过UI等方式去降低编写门槛，如可把常用正则提前封装_
 
 ------
 
-### SCHEMA EXAMPLE
+### More reference
 
-``` yaml
-name: 'schema1'
-version: 'v1'
-provider: 'provider'
-request:
-  - name: MSG_TYPE
-    type: CHAR
-    length: 1
-    content: 'regex(0|1)'
-response:
-  - name: SUPPLEMENT
-    type: CHAR
-    length: 10
-    content: 'regex([a-zA-Z0-9]{10})'
-```
+| 
 
-------
+Demo环境 <http://thanos.saraqian.cn>
 
-### CONTRACT EXAMPLE
+Github <https://github.com/abigail830/thanos-contract>
 
-``` yaml
-name: 'contract1'
-consumer: 'consumer1'
-provider: 'provider'
-version: 'v2'
-schema:
-  name: 'schema1'
-  version: 'v1'
-  provider: 'provider'
-req:
-  MSG_TYPE: '0'
-  TRAN_ASYNC: '0'
-  MESSAGE_TYPE: 'schema1'
-  TCODE: '123456'
-  ACCT_NO: '12345678901234567'
-  CHOICE: '1'
-res:
-  SUPPLEMENT: 'SUPPLEMENT'
-  MEMO: 'This is the expected memo for choice 1  '
-```
+开发者 [abigail830@163.com](mailto:abigail830@163.com)
+
+| 
 
 ------
 
