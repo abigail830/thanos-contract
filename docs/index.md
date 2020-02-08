@@ -12,7 +12,7 @@ Target to help the systems which still using TCP & Fix-length message to impleme
 
 ##### 在内外部系统依赖关系比较复杂的场景下常遇到：
 
-![](../background.jpg "常见流程")
+![](background.jpg "常见流程")
 
 - 并行开发困难，经常需要等待联调测试
 - 端到端测试才发现问题，重复翻修导致效率低
@@ -24,7 +24,7 @@ Target to help the systems which still using TCP & Fix-length message to impleme
 
 契约测试让生产者与消费者之间基于契约而更高效也更高质量地并行开发，减少端到端联调的压力。
 
-![](../target.jpg "目标流程")
+![](target.jpg "目标流程")
 
 这在依赖关系复杂的系统间尤为重要。
 
