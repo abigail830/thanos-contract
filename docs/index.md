@@ -121,7 +121,7 @@ Demo环境 <http://thanos.saraqian.cn>
 
 Github <https://github.com/abigail830/thanos-contract>
 
-开发者 [abigail830@163.com](mailto:abigail830@163.com)
+Dev by SaraQian [abigail830@163.com](mailto:abigail830@163.com)
 
 | 
 
