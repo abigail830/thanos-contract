@@ -23,24 +23,14 @@ Target to help the systems which still using TCP & Fix-length message to impleme
 
 ### Taget
 
-契约测试让生产者与消费者之间基于契约而更高效也更高质量地并行开发，减少端到端联调的压力。
+灭霸契约让各方在开发初期就协定契约:
+
+* 在开发测试过程中以同一份契约规约生产者与消费者
+* 以测试驱动更高效也更高质量地并行开发，减少端到端联调的压力。
 
 ![](target.jpg "目标流程")
 
 这在依赖关系复杂的系统间尤为重要。
-
----
-
-### 灭霸契约的核心
-
-| 目标是在开发初期就协定契约，在整个开发测试过程中以同一份契约规约双方，以测试驱动保证质量
-| 
-|      
- 
-###### 核心功能包括
-- 统一接口管理
-- 为消费者提供挡板服务
-- 为生产者提供自动化测试案例
 
 ---
 
@@ -55,21 +45,10 @@ Target to help the systems which still using TCP & Fix-length message to impleme
 
 ---
 
-### 契约DSL
 
-跟JSON的契约定义不同，定长报文DSL分两部分：
-
-- **SCHEMA：** 基础接口定义，如类型，长度，内容
-- **CONTRACT：** 具体场景下，面向一对生产者-消费者之间Request和Response的消息具体内容
+### More Reference
 
 | 
-| 
-| _注: 编写契约有一定门槛，但完全可以通过UI等方式去降低编写门槛，如可把常用正则提前封装_
-
-------
-
-### More reference
-
 | 
 
 Demo环境 <http://thanos.saraqian.cn>
@@ -81,6 +60,8 @@ Github <https://github.com/abigail830/thanos-contract>
 | 
 
 ------
+
+![Let's start](header.jpg)
 
 
 
