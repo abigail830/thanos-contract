@@ -1,10 +1,11 @@
 
-# 灭霸契约
+## 灭霸契约
 
 旨在为使用TCP和定长报文的系统\
 提供如灭霸弹指般轻松的契约测试
 
 | 
+
 Target to help the systems which still using TCP & Fix-length message to implement Contract Test. 
  
 ---
@@ -106,11 +107,9 @@ res:
 :::
 ::::::::::::::
 
-
-
 ---
 
-### 让契约测试，如灭霸弹指般轻松
+让契约测试，如灭霸弹指般轻松
 
 ![](header.jpg)
 
