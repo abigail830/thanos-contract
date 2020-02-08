@@ -149,5 +149,5 @@ Remark：
 * CodeGenerator可以直接作为Jar包在ContractService里面调用生成测试案例功能即可，无需独立部署增加架构复杂和延时。
 
 ## License
-ThanosContract is under [MIT](LICENSE) license
+ThanosContract is under [MPL2.0](LICENSE) license
 
