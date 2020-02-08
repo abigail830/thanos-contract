@@ -110,32 +110,16 @@ res:
 
 ---
 
+### 让契约测试，如灭霸弹指般轻松
 
-
-### More Reference
-
-| 
-| 
-
-Demo环境 <http://thanos.saraqian.cn>
-
-Github <https://github.com/abigail830/thanos-contract>
-
-Dev by SaraQian [abigail830@163.com](mailto:abigail830@163.com)
-
-License @ MPL2.0
-
-
+![](header.jpg)
 
 | 
 
-------
+* Demo环境 <http://thanos.saraqian.cn>
+* Github [Link to ThanosContract](https://github.com/abigail830/thanos-contract)
+* Dev by [SaraQian](www.saraqian.cn), License @ MPL2.0
 
-::: {data-separator-vertical}
-
-![让契约测试，如灭霸弹指般轻松 ^_^](header.jpg)
-
-:::
 
 
 
