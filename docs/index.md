@@ -123,6 +123,8 @@ Github <https://github.com/abigail830/thanos-contract>
 
 Dev by SaraQian [abigail830@163.com](mailto:abigail830@163.com)
 
+License @ MPL2.0
+
 
 
 | 
